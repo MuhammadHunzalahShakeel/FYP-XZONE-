@@ -1,0 +1,34 @@
+.Shoppingimage{
+    width: 487px;
+  
+}
+.Loginleft {
+    width: 50%;
+    float: left;
+   
+}  
+.Loginright {
+    width: 50%;
+    float: left;  
+    padding-right: 150px;
+    padding-left: 150x;
+    /* margin-right: 150px; */
+}  
+
+.Logo{
+    width: 118.52px ;
+    margin-top: 50px;
+    margin-left: 25%;
+    margin-bottom: 60px;
+}
+
+.Loginright>p{
+    margin-bottom: 5px;
+}
+.Loginright>h2{
+    margin-bottom: 20px;
+}
+.Loginright>input{
+    width: 10px;
+}
+

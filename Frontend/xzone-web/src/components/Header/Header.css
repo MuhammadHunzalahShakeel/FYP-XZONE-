@@ -1,0 +1,24 @@
+.Header{
+    width: auto;
+    height: 45px;
+    margin-left: 80px;
+    margin-right: 40px;
+    background-color: #ffffff;
+    border-radius: 0px 0px 25px 25px;
+    justify-content: left;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 0px 0px 25px 25px;
+
+}
+.Headerlogo{
+    width: 60px;
+    /* height: 36.9px;  */
+    margin-left: 32px;
+    margin-top: 8px;
+}
+.Admin{
+    width: 89px;
+    /* height: 36.9px; */
+    margin-left: 935px;
+    margin-top: 7px;
+}

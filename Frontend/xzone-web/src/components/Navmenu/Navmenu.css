@@ -1,0 +1,23 @@
+.Navmenu{
+    background-color: #ffffff;
+    position: absolute;
+    width: 42px;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    
+}
+
+.Nav>img{
+    width: 34px;
+    height: 34px;
+    margin-bottom: 28px;
+    margin-left: 3px;
+}
+.Advertisment{
+    margin-top: 122px;
+}
