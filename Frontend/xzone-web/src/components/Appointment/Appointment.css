@@ -60,16 +60,3 @@ span{
     border-radius: 4px;
     cursor: pointer;
 }
-.Table{
-    position: absolute;
-    height: 380px;
-    left: 82px;
-    right: 35px;
-    top: 140px;
-
-    /* white */
-
-    background: #ffffff;
-    border-radius: 10px 10px 10px 10px;
-    transform: matrix(1, 0, 0, -1, 0, 0);
-}

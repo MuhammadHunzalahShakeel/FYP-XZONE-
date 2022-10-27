@@ -1,0 +1,94 @@
+.Table{
+    position: absolute;
+        height: 380px;
+        left: 82px;
+        right: 35px;
+        top: 140px;
+    
+    
+    
+        background: #ffffff;
+        border-radius: 10px 10px 10px 10px;
+        /* transform: matrix(1, 0, 0, -1, 0, 0); */
+    }
+
+Table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  Table td, Table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  /* Table tr {
+    align-items: center;
+  }
+   */
+  Table tr:nth-child(even){background-color: #f2f2f2;}
+  
+  Table tr:hover {background-color: #ddd;}
+  
+  Table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #0F6AAB;
+    color: white;
+  }
+  Table td {
+    text-align: center;
+  }
+  .PurposetagRent{
+    display: flex;
+    background: #09886F;
+    border: 2px #09886F;
+    border-radius: 23px;
+    color: #ffffff;
+    width: 75px;
+    height: 25px;
+    align-items: center;
+    /* padding: 3px 8px; */
+    /* gap: 8px; */
+  }
+  .PurposetagSell{
+    display: flex;
+    background: #109CF1;
+    border: 2px #109CF1;
+    border-radius: 23px;
+    color: #ffffff;
+    width: 75px;
+    height: 25px;
+    text-align: center;
+    
+  }
+  .StatustagNotAvailable{
+    display: flex;
+    background: #921919;
+    border: 2px #921919;
+    border-radius: 23px;
+    color: #ffffff;
+    width: 110px;
+    height: 25px;
+    text-align: center;
+    
+  }
+  .StatustagAvailable{
+    display: flex;
+    background: #09886F;
+    border: 2px #09886F;
+    border-radius: 23px;
+    color: #ffffff;
+    width: 75px;
+    height: 25px;
+    text-align: center;
+    
+  }
+  button{
+    justify-content: center;
+    align-items: center;
+  }
+  .edit,.delete{
+    padding: 10px;
+  }
