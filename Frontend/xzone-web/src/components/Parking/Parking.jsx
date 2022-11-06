@@ -1,9 +1,21 @@
 import React from 'react'
-
-const Parking = () => {
+import './Parking.css'
+import  { Component } from 'react';
+import { Link } from "react-router-dom";
+import PropTypes  from 'prop-types'
+import Navmenu from '../Navmenu/Navmenu.jsx';
+import Header from '../Header/Header.jsx';
+export default function Parking(props) {
   return (
-    <h1>Parking</h1>
+    <div >
+      <Header/>
+       <Navmenu/>
+      <div className="ParkingText">
+        <h3>{props.title}</h3>
+        <input className='search' type="search" placeholder='search'/>
+        <span>New Ads</span>
+      </div>
+     
+    </div>
   )
 }
-
-export default Parking

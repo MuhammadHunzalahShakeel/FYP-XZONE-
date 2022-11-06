@@ -31,4 +31,10 @@
 .Loginright>input{
     width: 10px;
 }
-
+.loginbutton{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.loginbutton:hover {
+    color: rgb(255, 255, 255);
+  }

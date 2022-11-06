@@ -10,22 +10,24 @@ import Emergency from './components/Emergency/Emergency';
 import Customer from './components/Customer/Customer';
 import Navmenu from './components/Navmenu/Navmenu';
 import Header from './components/Header/Header';
-import Appointment from './components/Appointment/Appointment';
+import Advertisment from './components/Advertisment/Advertisment';
 import Table from "./components/Table/Table";
 
 
 const App = () => {
   return (
+      // <Navmenu/>
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login/>} />
-          <Route path="/shop" element={<Shops/>} />
-          <Route path="/staff" element={<Staff/>} />
-          <Route path="/ads" element={<Ads/>} />
-          <Route path="/parking" element={<Parking/>} />
-          <Route path="/emergency" element={<Emergency/>} />
-          <Route path="/customer" element={<Customer/>} />
+          <Route path="/shop" element={<Shops title='Shops' />} />
+          <Route path="/staff" element={<Staff title='Staff'/>} />
+          <Route path="/parking" element={<Parking title='Parking'/>} />
+          <Route path="/emergency" element={<Emergency title='Emergency' />} />
+          <Route path="/customer" element={<Customer title='Customer Care' />} />
+          <Route path="/advertisment" element={<Advertisment title='Advertisment'/>} />
         </Routes>
+      
       </BrowserRouter>
   )
 }
@@ -39,9 +41,11 @@ export default App
 //     <div className="App">
 //       {/* <Login/> */}
 //       <Navmenu/>
-//       <Header/>
-//       <Appointment title='Shops'/>
-//       <Table/>
+//       {/* <Staff/> */}
+//       <Advertisment title='Advertisment'/>
+//       {/* <Header/>
+//       <Table/> */}
+//       {/* <Emergency/> */}
 //     </div>
   
 //   );

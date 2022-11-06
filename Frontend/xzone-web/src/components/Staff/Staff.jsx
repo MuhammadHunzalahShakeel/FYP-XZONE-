@@ -1,9 +1,18 @@
 import React from 'react'
-
-const Staff = () => {
+import './Staff.css'
+import { Link } from "react-router-dom";
+import Navmenu from '../Navmenu/Navmenu.jsx';
+import Header from '../Header/Header.jsx';
+export default function Staff(props) {
   return (
-    <h1>Staff</h1>
+    <div>
+      <Header/>
+      <Navmenu/>
+      <div className="StaffText">
+        <h3>{props.title}</h3>
+        <input className='search' type="search" placeholder='search'/>
+        <span>New Ads</span>
+      </div>
+    </div>
   )
 }
-
-export default Staff

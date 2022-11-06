@@ -2,6 +2,7 @@ import React from 'react'
 import './Login.css'
 import Loginimage from "../../assets/Loginimage.svg"
 import Logo from "../../assets/Logo.svg"
+import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <div className="Login">
@@ -23,25 +24,9 @@ export default function Login() {
             <input type="password" class="form-control" id="adminpassword" placeholder="*********" />
             </div>
             <div class="d-grid gap-2 col-3 mx-auto">
-            <button class="btn btn-primary" type="button">Login Now</button>
+            <button class="btn btn-primary" type="button"><Link to="/advertisment" className='loginbutton'>Login Now</Link></button>
+            {/* <button class="btn btn-primary" type="button">Login Now</button> */}
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* <div>
-              <label htmlFor="">Email</label>
-              <input type="email" name="email" id="adminemail" placeholder="John.snow@gmail.com" />
-            </div> */}
 
         </div>
     </div>

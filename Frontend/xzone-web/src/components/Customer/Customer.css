@@ -1,0 +1,62 @@
+.CustomerText{
+    margin-left: 100px;
+    margin-top: 13px;
+    
+}
+/* * body{
+    background-color: #000;
+} */
+.Customer{
+background-color: #F2F8FF
+}
+
+.search{
+    box-sizing: border-box;
+    position: absolute;
+    left: 21%;
+    right: 53%;
+    top: 63px;
+    bottom: 84%;
+
+    background: #FFFFFF;
+    border: 1px solid #0F6AAB;
+    border-radius: 5px;
+}
+.Adsbutton{
+    /* display: flex; */
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: center;
+    /* padding: 8px 16px; */
+    gap: 4px;
+    color: #FFFFFF;
+
+    position: absolute;
+    width: 119px;
+    height: 40px;
+    /* left: 1734px;
+    top: 108px; */
+
+    background: #0F6AAB;
+    border-radius: 4px #0F6AAB;
+}
+span{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 4px;
+    color: #FFFFFF;
+
+    position: absolute;
+    width: 93px;
+    height: 32px;
+    left: 1129px;
+    top: 58px;
+    
+
+    background: #0F6AAB;
+    border-radius: 4px;
+    cursor: pointer;
+}
