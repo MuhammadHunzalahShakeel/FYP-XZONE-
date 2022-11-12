@@ -12,7 +12,6 @@
 //     const tableInstance =  useTable({
 //         columns,
 //         data
-
 //     })
 
 //     const{
@@ -61,106 +60,133 @@
 // export default Table
 
 
-import React from 'react'
-import './Table.css'
+// import React from 'react'
+// import './Table.css'
 
-import Edit from "../../assets/EditButton.png"
-import Delete from "../../assets/DeleteButton.png"
-export default function Table() {
+// import Edit from "../../assets/EditButton.png"
+// import Delete from "../../assets/DeleteButton.png"
+// export default function Table() {
    
-  return (
-    <div className='Table'>
-        <table>
-            <tr>
-                <th>No.</th>
-                <th>Shop Number</th>
-                <th>Shop Name</th>
-                <th>Owner Name</th>
-                <th>Purpose</th>
-                <th>Demand</th>
-                <th>Floor</th>
-                <th>Area</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Xzone - 101</td>
-                <td>Germany</td>
-                <td>Fatima Bilal</td>
-                <td><button className="PurposetagRent">For Rent</button></td>
-                <td>50k</td>
-                <td>1st</td>
-                <td>200sq</td>
-                <td><button className="StatustagAvailable">Available</button></td>
-                <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
+//   return (
+//     <div className='Table'>
+//         <table>
+//             <tr>
+//                 <th>No.</th>
+//                 <th>Shop Number</th>
+//                 <th>Shop Name</th>
+//                 <th>Owner Name</th>
+//                 <th>Purpose</th>
+//                 <th>Demand</th>
+//                 <th>Floor</th>
+//                 <th>Area</th>
+//                 <th>Status</th>
+//                 <th>Actions</th>
+//             </tr>
+//             <tr>
+//                 <td>1</td>
+//                 <td>Xzone - 101</td>
+//                 <td>Germany</td>
+//                 <td>Fatima Bilal</td>
+//                 <td><button className="PurposetagRent">For Rent</button></td>
+//                 <td>50k</td>
+//                 <td>1st</td>
+//                 <td>200sq</td>
+//                 <td><button className="StatustagAvailable">Available</button></td>
+//                 <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
             
                 
                 
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Xzone - 102</td>
-                <td>Germany</td>
-                <td>Fatima Bilal</td>
-                <td><button className="PurposetagSell">For Sell</button></td>
-                <td>50k</td>
-                <td>1st</td>
-                <td>200sq</td>
-                <td><button className="StatustagAvailable">Available</button></td>
-                <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Xzone - 103</td>
-                <td>Germany</td>
-                <td>Fatima Bilal</td>
-                <td><button className="PurposetagRent">For Rent</button></td>
-                <td>50k</td>
-                <td>1st</td>
-                <td>200sq</td>
-                <td><button className="StatustagAvailable">Available</button></td>
-                <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Xzone - 104</td>
-                <td>Germany</td>
-                <td>Fatima Bilal</td>
-                <td><button className="PurposetagRent">For Rent</button></td>
-                <td>50k</td>
-                <td>1st</td>
-                <td>200sq</td>
-                <td><button className="StatustagNotAvailable">Not Available</button></td>
-                <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Xzone - 105</td>
-                <td>Germany</td>
-                <td>Fatima Bilal</td>
-                <td><button className="PurposetagSell">For Sell</button></td>
-                <td>50k</td>
-                <td>1st</td>
-                <td>200sq</td>
-                <td><button className="StatustagAvailable">Available</button></td>
-                <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Xzone - 106</td>
-                <td>Germany</td>
-                <td>Fatima Bilal</td>
-                <td><button className="PurposetagSell">For Sell</button></td>
-                <td>50k</td>
-                <td>1st</td>
-                <td>200sq</td>
-                <td><button className="StatustagNotAvailable">Not Available</button></td>
-                <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
-            </tr>
-        </table>
-        {/* <button className="Purposetag">For Rent</button> */}
+//             </tr>
+//             <tr>
+//                 <td>2</td>
+//                 <td>Xzone - 102</td>
+//                 <td>Germany</td>
+//                 <td>Fatima Bilal</td>
+//                 <td><button className="PurposetagSell">For Sell</button></td>
+//                 <td>50k</td>
+//                 <td>1st</td>
+//                 <td>200sq</td>
+//                 <td><button className="StatustagAvailable">Available</button></td>
+//                 <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
+//             </tr>
+//             <tr>
+//                 <td>3</td>
+//                 <td>Xzone - 103</td>
+//                 <td>Germany</td>
+//                 <td>Fatima Bilal</td>
+//                 <td><button className="PurposetagRent">For Rent</button></td>
+//                 <td>50k</td>
+//                 <td>1st</td>
+//                 <td>200sq</td>
+//                 <td><button className="StatustagAvailable">Available</button></td>
+//                 <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
+//             </tr>
+//             <tr>
+//                 <td>4</td>
+//                 <td>Xzone - 104</td>
+//                 <td>Germany</td>
+//                 <td>Fatima Bilal</td>
+//                 <td><button className="PurposetagRent">For Rent</button></td>
+//                 <td>50k</td>
+//                 <td>1st</td>
+//                 <td>200sq</td>
+//                 <td><button className="StatustagNotAvailable">Not Available</button></td>
+//                 <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
+//             </tr>
+//             <tr>
+//                 <td>5</td>
+//                 <td>Xzone - 105</td>
+//                 <td>Germany</td>
+//                 <td>Fatima Bilal</td>
+//                 <td><button className="PurposetagSell">For Sell</button></td>
+//                 <td>50k</td>
+//                 <td>1st</td>
+//                 <td>200sq</td>
+//                 <td><button className="StatustagAvailable">Available</button></td>
+//                 <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
+//             </tr>
+//             <tr>
+//                 <td>6</td>
+//                 <td>Xzone - 106</td>
+//                 <td>Germany</td>
+//                 <td>Fatima Bilal</td>
+//                 <td><button className="PurposetagSell">For Sell</button></td>
+//                 <td>50k</td>
+//                 <td>1st</td>
+//                 <td>200sq</td>
+//                 <td><button className="StatustagNotAvailable">Not Available</button></td>
+//                 <td><img src={Edit} alt="" className="edit" /><img src={Delete} alt="" className="delete" /></td>
+//             </tr>
+//         </table>
+//         <button className="Purposetag">For Rent</button>
         
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
+
+
+import React from "react";
+import TableRow from "./TableRow";
+import TableHeadItem from "./TableHead";
+import './Table.css'
+
+const Table = ({ theadData, tbodyData, customClass }) => {
+    return (
+        <table className={customClass}>
+            <thead>
+                <tr>
+                    {theadData.map((h) => {
+                        return <TableHeadItem key={h} item={h} />;
+                    })}
+                </tr>
+            </thead>
+            <tbody>
+                {tbodyData.map((item) => {
+                    return <TableRow key={item.id} data={item.items} />;
+                })}
+            </tbody>
+        </table>
+    );
+};
+
+export default Table;
