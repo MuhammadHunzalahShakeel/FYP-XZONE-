@@ -3,13 +3,9 @@
     margin-top: 13px;
     
 }
-/* * body{
-    background-color: #000;
-} */
 .Parking{
 background-color: #F2F8FF
 }
-
 .search{
     box-sizing: border-box;
     position: absolute;
@@ -40,23 +36,59 @@ background-color: #F2F8FF
     background: #0F6AAB;
     border-radius: 4px #0F6AAB;
 }
-span{
+.ui{
+    position: absolute ;
+    left:100px;
+    top:160px;
+
+}
+/* span {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 8px 16px;
-    gap: 4px;
+    padding: 16px 5px;
+    gap: 9px;
     color: #FFFFFF;
-
-    position: absolute;
-    width: 93px;
-    height: 32px;
-    left: 1129px;
-    top: 58px;
-    
-
+    position: relative;
+    width: 108px;
+    width: 92px;
+    left: 1022px;
+    top: -40px;
     background: #0F6AAB;
     border-radius: 4px;
     cursor: pointer;
+} */
+.button1{
+    position: relative;
+    left: 1022px;
+    top: -40px;
+
+}
+a.button1{
+    
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #0F6AAB;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    background-color:#0F6AAB;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#ffffff;
+    text-align:center;
+    transition: all 0.2s;
+}
+a.button1:hover{
+    color:#0F6AAB;
+    background-color:#ffffff;
+}
+@media all and (max-width:30em){
+a.button1
+{
+    display:block;
+    margin:0.4em auto;
+}
 }

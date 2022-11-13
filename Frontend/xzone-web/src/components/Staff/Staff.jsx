@@ -11,7 +11,7 @@ export default function Staff(props) {
       <div className="StaffText">
         <h3>{props.title}</h3>
         <input className='search' type="search" placeholder='search'/>
-        <span>New Ads</span>
+        <a href="something" class="button1">Add Staff</a>
       </div>
     </div>
   )

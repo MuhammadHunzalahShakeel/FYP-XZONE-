@@ -28,11 +28,11 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavLayout/>}>
-              <Route path="/shop" element={<Shops title='Shops' />} />
+              <Route path="/shops" element={<Shops title='Shops' />} />
               <Route path="/staff" element={<Staff title='Staff'/>} />
               <Route path="/parking" element={<Parking title='Parking'/>} />
               <Route path="/emergency" element={<Emergency title='Emergency' />} />
-              <Route path="/customer" element={<Customer title='Customer Care' />} />
+              <Route path="/customer" element={<Customer title='Customer' />} />
               <Route path="/advertisment" element={<Advertisment title='Advertisment'/>} />
           </Route>
           <Route>

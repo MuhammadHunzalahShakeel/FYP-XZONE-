@@ -34,6 +34,26 @@ export default function Advertisment(props) {
             id: "5",
             items: ["5", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
         },
+        {
+            id: "6",
+            items: ["6", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
+        },
+        {
+            id: "7",
+            items: ["7", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
+        },
+        {
+            id: "8",
+            items: ["8", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
+        },
+        {
+            id: "9",
+            items: ["9", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
+        },
+        {
+            id: "10",
+            items: ["10", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
+        },
     ];
   return (
     <div >
@@ -41,18 +61,15 @@ export default function Advertisment(props) {
        {/* <Navmenu/> */}
       <div className="AdvertismentText">
         <h3>{props.title}</h3>
-        <input className='search' type="search" placeholder='search'/>
-        {/* <button class="btn"><i class="fa fa-plus"></i> Home</button> */}
-        {/* <Button variant="outlined" >Delete</Button> */}
-        {/* <span>New Ads</span> */}
-      <button className='Adsbutton'>Add Ads</button>
+        <div>
+          <input className='search' type="search" placeholder='search'/>
+          <a href="something" class="button1">Add Ads</a>
+        </div>
       </div>
-      <div className='Tablebackground'>
-
-      </div>
-      {/* <div>
+      {/* <div className='Tablebackground'></div> */}
+      <div  className='ui'>
             <Table theadData={theadData} tbodyData={tbodyData} />
-      </div> */}
+      </div>
      
     </div>
   )

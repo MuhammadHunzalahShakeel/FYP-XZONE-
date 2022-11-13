@@ -13,7 +13,7 @@ export default function Customer(props) {
       <div className="CustomerText">
         <h3>{props.title}</h3>
         <input className='search' type="search" placeholder='search'/>
-        <span>New Ads</span>
+        <a href="something" class="button1">Add Customer</a>
       </div>
      
     </div>

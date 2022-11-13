@@ -172,7 +172,7 @@ import './Table.css'
 
 const Table = ({ theadData, tbodyData, customClass }) => {
     return (
-        <table className={customClass}>
+        <table className={customClass}  >
             <thead>
                 <tr>
                     {theadData.map((h) => {
