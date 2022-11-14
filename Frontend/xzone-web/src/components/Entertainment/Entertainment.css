@@ -1,4 +1,4 @@
-.ShopsText{
+.EntertainmentText{
     margin-left: 100px;
     margin-top: 13px;
     
@@ -6,7 +6,7 @@
 /* * body{
     background-color: #000;
 } */
-.Shops{
+.Entertainment{
 background-color: #F2F8FF
 }
 
@@ -40,13 +40,6 @@ background-color: #F2F8FF
     background: #0F6AAB;
     border-radius: 4px #0F6AAB;
 }
-.ui{
-    position: absolute ;
-    left:100px;
-    top:160px;
-
-}
-
 /* span{
     display: flex;
     flex-direction: row;
@@ -67,9 +60,16 @@ background-color: #F2F8FF
     border-radius: 4px;
     cursor: pointer;
 } */
+.ui{
+    position: absolute ;
+    left:100px;
+    top:160px;
+
+}
+
 .button1{
     position: relative;
-    left: 989px;
+    left: 1022px;
     top: -40px;
 
 }

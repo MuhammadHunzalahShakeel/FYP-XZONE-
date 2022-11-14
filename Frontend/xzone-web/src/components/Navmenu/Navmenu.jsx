@@ -6,6 +6,7 @@ import AdvertismentNavMenu from "../../assets/AdvertismentNavMenu.svg"
 import ShopNavMenu from "../../assets/ShopNavMenu.svg"
 import ParkingNavMenu from "../../assets/ParkingNavMenu.svg"
 import StaffNavMenu from "../../assets/StaffNavMenu.svg"
+import Entertainment from "../../assets/Entertainment.svg"
 import EmergencyNavMenu from "../../assets/EmergencyNavMenu.svg"
 import CustomerNavMenu from "../../assets/CustomerNavMenu.svg"
 export default function Navmenu() {
@@ -17,7 +18,8 @@ export default function Navmenu() {
           <img className='Shop'                 src={ShopNavMenu} alt="Logo Image"></img>  
           <img className='Parking'              src={ParkingNavMenu} alt="Logo Image"></img>  
           <img className='Staff'                src={StaffNavMenu} alt="Logo Image"></img>  
-          <img className='Emergency'            src={EmergencyNavMenu} alt="Logo Image"></img>  
+          <img className='Entertainment'        src={Entertainment} alt="Logo Image"></img>  
+          {/* <img className='Emergency'            src={EmergencyNavMenu} alt="Logo Image"></img>   */}
           <img className='Customer'             src={CustomerNavMenu} alt="Logo Image"></img> 
           {/* <Link to="/Advertisment" ><img className='Advertisment'         src={AdvertismentNavMenu} ></img></Link>
           <Link to="/Shop" ><img className='Shop'                 src={ShopNavMenu} ></img> </Link>

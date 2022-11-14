@@ -1,54 +1,54 @@
 import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
-import './Staff.css'
+import './Entertainment.css'
 import Button from '@mui/material/Button';
 import Table from "../Table/Table.jsx";
 import { Link } from "react-router-dom";
 import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
-export default function Staff(props) {
+export default function  Entertainment(props) {
     const[modal,setmodal]=useState(false)
-    const theadData = ["No.", "Staff Number", "Staff Name", "Staff Gender", "Staff Age", "Salary", "Joining Date", "Action"];
+    const theadData = ["No.", "Food Court No", "Name", "Category", "Description", "Website", "Action"];
     const tbodyData = [
         {
             id: "1",
-            items: ["1", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022", ":"],
+            items: ["1", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",  ":"],
         },
         {
             id: "2",
-            items: ["2", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
+            items: ["2", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
         },
         {
             id: "3",
-            items: ["3", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
+            items: ["3", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
         },
         {
             id: "4",
-            items: ["4", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
+            items: ["4", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
         },
         {
             id: "5",
-            items: ["5", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
+            items: ["5", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
         },
         {
             id: "6",
-            items: ["6", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
+            items: ["6", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
         },
         {
             id: "7",
-            items: ["7", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
+            items: ["7", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
         },
         {
             id: "8",
-            items: ["8", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
+            items: ["8", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
         },
         {
             id: "9",
-            items: ["9", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
+            items: ["9", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
         },
         {
             id: "10",
-            items: ["10", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
+            items: ["10", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
         },
         
     ];
@@ -56,10 +56,10 @@ export default function Staff(props) {
     <div>
       <Header/>
       <Navmenu/>
-      <div className="StaffText">
+      <div className=" EntertainmentText">
         <h3>{props.title}</h3>
         <div>
-        <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
+          <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
             <ModalHeader toggle={()=>setmodal(!modal)}>
               Add New Ads
             </ModalHeader>
@@ -120,8 +120,9 @@ export default function Staff(props) {
             </ModalBody>
             
           </Modal>
-        <input className='search' type="search" placeholder='search'/>
-        <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Staff</button>
+          <input className='search' type="search" placeholder='search'/>
+          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Brand</button>
+          
         </div>
       </div>
       <div  className='ui'>

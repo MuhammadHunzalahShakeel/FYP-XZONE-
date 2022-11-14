@@ -60,6 +60,13 @@ background-color: #F2F8FF
     border-radius: 4px;
     cursor: pointer;
 } */
+.ui{
+    position: absolute ;
+    left:100px;
+    top:160px;
+
+}
+
 .button1{
     position: relative;
     left: 1022px;

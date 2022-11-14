@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{useState} from 'react'
+import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import Button from '@mui/material/Button';
 import Table from "../Table/Table.jsx";
 // import Button from 'react-bootstrap/Button';
@@ -12,6 +13,7 @@ import Header from '../Header/Header.jsx';
 
 
 export default function Advertisment(props) {
+  const[modal,setmodal]=useState(false)
   const theadData = ["Ads No.", "Ads Shop", "Ads Category", "Instructions", "View Ads", "Actions"];
     const tbodyData = [
         {
@@ -55,16 +57,82 @@ export default function Advertisment(props) {
             items: ["10", "LIPID PANEL", "Fatima Bilal", "N/A", "N/A", ":"],
         },
     ];
+    
   return (
-    <div >
+    <div>
       <Header/>
        {/* <Navmenu/> */}
       <div className="AdvertismentText">
         <h3>{props.title}</h3>
+        
         <div>
+          <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
+            <ModalHeader toggle={()=>setmodal(!modal)}>
+              Add New Ads
+            </ModalHeader>
+            <ModalBody> 
+                <form action="">
+                  <Row>
+                    <Col lg={12}>
+                      <div>
+                        <label htmlFor="">
+                          Ads Shop
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Shop Name'
+                        name='oldPassword'>
+                      </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Ads Category
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Ads Category'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Instruction
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Instruction'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          View Ads
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Ads'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                    </Col>
+                  </Row>
+                </form> 
+                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}>Save</button>
+                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                
+            </ModalBody>
+            
+          </Modal>
+          
           <input className='search' type="search" placeholder='search'/>
-          <a href="something" class="button1">Add Ads</a>
+          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Ads</button>
+          
         </div>
+        
       </div>
       {/* <div className='Tablebackground'></div> */}
       <div  className='ui'>

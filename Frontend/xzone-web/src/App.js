@@ -9,6 +9,7 @@ import Parking from './components/Parking/Parking';
 import Emergency from './components/Emergency/Emergency';
 import Customer from './components/Customer/Customer';
 import Navmenu from './components/Navmenu/Navmenu';
+import Entertainment from './components/Entertainment/Entertainment';
 import Header from './components/Header/Header';
 import Advertisment from './components/Advertisment/Advertisment';
 import Table from "./components/Table/Table";
@@ -28,12 +29,13 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavLayout/>}>
-              <Route path="/shops" element={<Shops title='Shops' />} />
-              <Route path="/staff" element={<Staff title='Staff'/>} />
-              <Route path="/parking" element={<Parking title='Parking'/>} />
-              <Route path="/emergency" element={<Emergency title='Emergency' />} />
-              <Route path="/customer" element={<Customer title='Customer' />} />
               <Route path="/advertisment" element={<Advertisment title='Advertisment'/>} />
+              <Route path="/shops" element={<Shops title='Shops' />} />
+              <Route path="/parking" element={<Parking title='Parking'/>} />
+              <Route path="/staff" element={<Staff title='Staff'/>} />
+              <Route path="/entertainment" element={<Entertainment title='Food Court'/>} />
+              {/* <Route path="/emergency" element={<Emergency title='Emergency' />} /> */}
+              <Route path="/customer" element={<Customer title='Customer' />} />
           </Route>
           <Route>
               <Route path="/login" element={<Login/>} />
