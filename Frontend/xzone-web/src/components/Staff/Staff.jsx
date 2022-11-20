@@ -2,13 +2,13 @@ import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import './Staff.css'
 import Button from '@mui/material/Button';
-// import Table from "../Table/Table.jsx";
-// import { Link } from "react-router-dom";
-// import Navmenu from '../Navmenu/Navmenu.jsx';
+import Table from "../Table/Table.jsx";
+import { Link } from "react-router-dom";
+import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
 export default function Staff(props) {
-    
-    // const theadData = ["No.", "Staff Number", "Staff Name", "Staff Gender", "Staff Age", "Salary", "Joining Date", "Action"];
+    const[modal,setmodal]=useState(false)
+    const theadData = ["No.", "Staff Number", "Staff Name", "Staff Gender", "Staff Age", "Salary", "Joining Date", "Action"];
     const tbodyData = [
         {
             id: "1",
