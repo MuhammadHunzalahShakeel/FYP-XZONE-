@@ -13,6 +13,7 @@ import Header from '../Header/Header.jsx';
 
 
 export default function Advertisment(props) {
+  // const edit= <Fab size="small" color="secondary" aria-label="add"> <AddIcon /></Fab>
   const[modal,setmodal]=useState(false)
   const theadData = ["Ads No.", "Ads Shop", "Ads Category", "Instructions", "View Ads", "Actions"];
     const tbodyData = [
@@ -130,7 +131,6 @@ export default function Advertisment(props) {
           
           <input className='search' type="search" placeholder='search'/>
           <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Ads</button>
-          
         </div>
         
       </div>
@@ -138,7 +138,7 @@ export default function Advertisment(props) {
       <div  className='ui'>
             <Table theadData={theadData} tbodyData={tbodyData} />
       </div>
-     
+
     </div>
   )
 }

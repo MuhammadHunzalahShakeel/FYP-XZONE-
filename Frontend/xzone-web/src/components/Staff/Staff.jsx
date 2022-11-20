@@ -61,7 +61,7 @@ export default function Staff(props) {
         <div>
         <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
             <ModalHeader toggle={()=>setmodal(!modal)}>
-              Add New Ads
+              Add Staff
             </ModalHeader>
             <ModalBody> 
                 <form action="">
@@ -69,45 +69,67 @@ export default function Staff(props) {
                     <Col lg={12}>
                       <div>
                         <label htmlFor="">
-                          Ads Shop
+                          Staff Number
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Shop Name'
+                        placeholder='Enter Staff Number'
                         name='oldPassword'>
                       </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Ads Category
+                          Staff Name
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads Category'
+                        placeholder='Enter Staff Name'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Instruction
+                          Staff Gender
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Instruction'
+                        placeholder='Enter Staff Gender'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          View Ads
+                          Staff Age
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads'
+                        placeholder='Enter Staff Age'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Salary
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Salary'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Joining Date
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Joining Date'
                         name='oldPassword'>
                         </input>
                       </div>

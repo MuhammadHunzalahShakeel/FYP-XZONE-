@@ -70,45 +70,56 @@ export default function Parking(props) {
                     <Col lg={12}>
                       <div>
                         <label htmlFor="">
-                          Ads Shop
+                          Car Number
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Shop Name'
+                        placeholder='Enter Car Number'
                         name='oldPassword'>
                       </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Ads Category
+                          Arrivet At
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads Category'
+                        placeholder='Enter Arrivet At'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Instruction
+                          Depart
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Instruction'
+                        placeholder='Enter Depart'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          View Ads
+                          Parking Fee
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads'
+                        placeholder='Enter Parking Fee'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Status
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Status'
                         name='oldPassword'>
                         </input>
                       </div>

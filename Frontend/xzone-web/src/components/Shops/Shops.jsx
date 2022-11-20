@@ -65,7 +65,7 @@ export default function Shops(props) {
         <div>
           <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
             <ModalHeader toggle={()=>setmodal(!modal)}>
-              Add New Ads
+              Add Shop
             </ModalHeader>
             <ModalBody> 
                 <form action="">
@@ -73,45 +73,89 @@ export default function Shops(props) {
                     <Col lg={12}>
                       <div>
                         <label htmlFor="">
-                          Ads Shop
+                          Shop Number
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Shop Number'
+                        name='oldPassword'>
+                      </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Shop Name
                         </label>
                         <input
                         type='text'
                         className='form-control'
                         placeholder='Enter Shop Name'
                         name='oldPassword'>
-                      </input>
+                        </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Ads Category
+                          Owner Name
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads Category'
+                        placeholder='Enter Owner Name'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Instruction
+                          Purpose
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Instruction'
+                        placeholder='Enter Purpose'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          View Ads
+                          Demand
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads'
+                        placeholder='Enter Demand'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Floor
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Floor'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Area
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Area'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Status
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Status'
                         name='oldPassword'>
                         </input>
                       </div>
@@ -125,7 +169,7 @@ export default function Shops(props) {
             
           </Modal>
           <input className='search' type="search" placeholder='search'/>
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Shops</button>
+          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Shop</button>
           
         </div>
       </div>

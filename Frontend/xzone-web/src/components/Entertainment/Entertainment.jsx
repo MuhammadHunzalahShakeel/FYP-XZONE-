@@ -61,7 +61,7 @@ export default function  Entertainment(props) {
         <div>
           <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
             <ModalHeader toggle={()=>setmodal(!modal)}>
-              Add New Ads
+              Add Brand
             </ModalHeader>
             <ModalBody> 
                 <form action="">
@@ -69,45 +69,56 @@ export default function  Entertainment(props) {
                     <Col lg={12}>
                       <div>
                         <label htmlFor="">
-                          Ads Shop
+                         Food Court No
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Shop Name'
+                        placeholder='Enter Food Court No'
                         name='oldPassword'>
                       </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Ads Category
+                          Brand Name
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads Category'
+                        placeholder='Enter Name'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Instruction
+                          Category
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Instruction'
+                        placeholder='Enter Category'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          View Ads
+                          Description
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Ads'
+                        placeholder='Enter Description'
+                        name='oldPassword'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Website
+                        </label>
+                        <input
+                        type='text'
+                        className='form-control'
+                        placeholder='Enter Website'
                         name='oldPassword'>
                         </input>
                       </div>
