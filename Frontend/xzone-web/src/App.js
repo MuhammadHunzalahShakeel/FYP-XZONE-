@@ -4,10 +4,11 @@ import './App.css';
 import Login from './components/Login/Login';
 import Shops from './components/Shops/Shops';
 import Staff from './components/Staff/Staff';
-import Ads from './components/Ads/Ads';
+// import Ads from './components/Ads/Ads';
 import Parking from './components/Parking/Parking';
-import Emergency from './components/Emergency/Emergency';
+// import Emergency from './components/Emergency/Emergency';
 import Customer from './components/Customer/Customer';
+import Profile from './components/Profile/Profile';
 import Navmenu from './components/Navmenu/Navmenu';
 import Entertainment from './components/Entertainment/Entertainment';
 import Header from './components/Header/Header';
@@ -52,6 +53,7 @@ const App = () => {
               <Route path="/staff" element={<Staff title='Staff'/>} />
               <Route path="/entertainment" element={<Entertainment title='Food Court'/>} />
               <Route path="/customer" element={<Customer title='Customer' />} />
+              <Route path="/profile" element={<Profile title='Profile' />} />
           </Route>
           <Route>
               <Route path="/login" element={<Login/>} />

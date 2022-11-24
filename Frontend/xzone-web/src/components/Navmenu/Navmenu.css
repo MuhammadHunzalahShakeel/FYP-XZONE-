@@ -11,13 +11,19 @@
     display: inline-block;
     
 }
-
-#navimage>img{
+img{
     width: 34px;
     height: 34px;
     margin-bottom: 28px;
     margin-left: 3px;
 }
+
+/* .navlink>Link>img{
+    width: 34px;
+    height: 34px;
+    margin-bottom: 28px;
+    margin-left: 3px;
+} */
 .Advertisment{
     margin-top: 122px;
 }

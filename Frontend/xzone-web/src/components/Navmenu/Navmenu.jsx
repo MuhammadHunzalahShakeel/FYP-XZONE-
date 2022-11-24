@@ -14,17 +14,7 @@ import CustomerNavMenu from "../../assets/CustomerNavMenu.svg"
 export default function Navmenu() {
   return (
       <div className='Navmenu'>
-        <div id='navimage'>
-          {/* <Link to='/advertisment'>
-          <img className='Advertisment'          src={AdvertismentNavMenu} alt="Logo Image"></img>  
-
-          </Link>
-          <img className='Shop'                 src={ShopNavMenu} alt="Logo Image"></img>  
-          <img className='Parking'              src={ParkingNavMenu} alt="Logo Image"></img>  
-          <img className='Staff'                src={StaffNavMenu} alt="Logo Image"></img>  
-          <img className='Entertainment'        src={Entertainment} alt="Logo Image"></img>  
-         
-          <img className='Customer'             src={CustomerNavMenu} alt="Logo Image"></img>  */}
+        <div className='navlink'>
           <Link to="/advertisment" ><img className='Advertisment'         src={AdvertismentNavMenu} ></img></Link>
           <Link to="/shops" ><img className='Shop'                 src={ShopNavMenu} ></img> </Link>
           <Link to="/parking" ><img className='Parking'              src={ParkingNavMenu} ></img></Link>
