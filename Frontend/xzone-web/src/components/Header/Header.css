@@ -22,3 +22,31 @@
     margin-left: 935px;
     margin-top: 7px;
 }
+
+
+
+.profilebackground{
+    position: absolute;
+    left: 85%;
+    top: 8%;
+    width: 132px;
+    height: 90px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+hr{
+    padding: 0;
+    margin: 0;
+}
+.profiledropdown{
+    padding-top: 8%;
+    padding-bottom: 8%;
+    padding-left: 10%;
+    text-decoration: none;
+    color: black;
+}
+.profiledropdown:hover{
+    background-color: #0F6AAB;
+    color: #FFFFFF;
+}
