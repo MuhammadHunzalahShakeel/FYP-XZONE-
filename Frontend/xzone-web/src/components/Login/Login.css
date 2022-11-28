@@ -1,6 +1,9 @@
 .Shoppingimage{
-    width: 462px;
-  
+    width: 462px;  
+}
+.login{
+    margin: 0;
+    padding: 0;
 }
 .Loginleft {
     width: 50%;
@@ -12,7 +15,6 @@
     float: left;  
     padding-right: 150px;
     padding-left: 150x;
-    /* margin-right: 150px; */
 }  
 
 .Logo{

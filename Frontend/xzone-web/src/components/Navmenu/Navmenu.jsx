@@ -15,12 +15,12 @@ export default function Navmenu() {
   return (
       <div className='Navmenu'>
         <div className='navlink'>
-          <Link to="/advertisment" ><img className='Advertisment'         src={AdvertismentNavMenu} ></img></Link>
-          <Link to="/shops" ><img className='Shop'                 src={ShopNavMenu} ></img> </Link>
-          <Link to="/parking" ><img className='Parking'              src={ParkingNavMenu} ></img></Link>
-          <Link to="/staff" ><img className='Staff'                src={StaffNavMenu} ></img>  </Link>
-          <Link to="/entertainment" ><img className='Entertainment'  src={Entertainment} ></img></Link>
-          <Link to="/customer" ><img className='Customer'  src={CustomerNavMenu} ></img></Link> 
+          <Link to="/advertisment" ><img className='Advertisment' id='Navmenuicon'        src={AdvertismentNavMenu} ></img></Link>
+          <Link to="/shops" ><img className='Shop' id='Navmenuicon'                src={ShopNavMenu} ></img> </Link>
+          <Link to="/parking" ><img className='Parking' id='Navmenuicon'             src={ParkingNavMenu} ></img></Link>
+          <Link to="/staff" ><img className='Staff'   id='Navmenuicon'             src={StaffNavMenu} ></img>  </Link>
+          <Link to="/entertainment" ><img className='Entertainment' id='Navmenuicon'  src={Entertainment} ></img></Link>
+          <Link to="/customer" ><img className='Customer' id='Navmenuicon' src={CustomerNavMenu} ></img></Link> 
         </div>
     </div>  
   )
