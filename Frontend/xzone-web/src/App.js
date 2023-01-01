@@ -26,24 +26,6 @@ const NavLayout = () => (
 
 const App = () => {
   return (
-      // <Navmenu/>
-      // <Router>
-      //   <Link></Link>
-      //   <Navlink exact activeClassName="active" to="/">Home Navlink</Navlink>
-      //   <Navlink exact activeClassName="active" to="/about">About</Navlink>
-      //   <Navlink exact activeClassName="active" to="/about/1">About 1</Navlink>
-      //   <Navlink exact activeClassName="active" to="/about/2">About 2</Navlink>
-      //   <Navlink exact activeClassName="active" to="/about/3">About 3</Navlink>
-      //   <Navlink exact activeClassName="active" to="/contact">contact</Navlink>
-        
-      //   <Switch>
-      //     <Route exact path="/" component={advertisment} />
-      //     <Route exact path="/about/:id?" component={advertisment} />
-      //     <Route exact path="/contact" component={advertisment} />
-      //     <Route exact path="/login" component={advertisment} />
-      //   </Switch>
-      // </Router>
-      
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavLayout/>}>

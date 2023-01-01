@@ -2,57 +2,18 @@ import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import Button from '@mui/material/Button';
 import './Parking.css'
+import ParkingTables from './ParkingTables.jsx';
 import Table from "../Table/Table.jsx";
 import  { Component } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes  from 'prop-types'
 import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
+
+
 export default function Parking(props) {
-  const[modal,setmodal]=useState(false)
-  const theadData = ["No.", "Car Number", "Arrivet At", "Depart", "Parking Fee","Status", "Actions"];
-  const tbodyData = [
-      {
-          id: "1",
-          items: ["1", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-      {
-          id: "2",
-          items: ["2", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-      {
-          id: "3",
-          items: ["3", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-      {
-          id: "4",
-          items: ["4", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-      {
-          id: "5",
-          items: ["5", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-      {
-          id: "6",
-          items: ["6", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-      {
-          id: "7",
-          items: ["7", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-      {
-          id: "8",
-          items: ["8", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-      {
-          id: "9",
-          items: ["9", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-      {
-          id: "10",
-          items: ["10", "ADF - 568", "02-10-22 11:30 P.M", "02-10-22 11:30 P.M", "22yrs","Paid", ":"],
-      },
-  ];
+  const[modal,setmodal]=useState(false);
+  
   return (
     <div >
       <Header/>
@@ -132,14 +93,13 @@ export default function Parking(props) {
             </ModalBody>
             
           </Modal>
-          <input className='search' type="search" placeholder='search'/>
+          {/* <input className='search' type="search" placeholder='search'/> */}
           <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Parking</button>
           
         </div>
+      <ParkingTables/>
       </div>
-      <div  className='ui'>
-            <Table theadData={theadData} tbodyData={tbodyData} />
-      </div>
+      
      
     </div>
   )

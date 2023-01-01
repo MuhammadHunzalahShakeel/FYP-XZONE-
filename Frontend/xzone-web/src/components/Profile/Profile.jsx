@@ -69,6 +69,10 @@ export default function Profile(props) {
                         name='confirmpassword'>
                         </input>
                       </div>
+                      <div>
+                        <label htmlFor="img">Select image:</label>
+                        <input type="file" className='form-control' id="img" name="profileimg" accept="image/*"></input>
+                      </div>
                      
                     </Col>
                   </Row>
