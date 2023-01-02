@@ -54,7 +54,7 @@ setmodal(!modal)
         <div>
           <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
             <ModalHeader toggle={()=>setmodal(!modal)}>
-              Add Brand
+              Add Cinema
             </ModalHeader>
             <ModalBody> 
                 <form onSubmit={handleSubmit}>
@@ -62,34 +62,23 @@ setmodal(!modal)
                     <Col lg={12}>
                       <div>
                         <label htmlFor="">
-                         Food Court No
+                         Cinema No
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Food Court No'
+                        placeholder='Enter Cinema No'
                         name='oldPassword'>
                       </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Brand Name
+                          Cinema Name
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Name'
-                        name='oldPassword'>
-                        </input>
-                      </div>
-                      <div>
-                        <label htmlFor='oldPassword'>
-                          Category
-                        </label>
-                        <input
-                        type='text'
-                        className='form-control'
-                        placeholder='Enter Category'
+                        placeholder='Enter Cinema Name'
                         name='oldPassword'>
                         </input>
                       </div>
@@ -125,7 +114,7 @@ setmodal(!modal)
             
           </Modal>
           {/* <input className='search' type="search" placeholder='search'/> */}
-          <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Brand</button>
+          <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Cinema</button>
           <div className="space"></div>
         </div>
         <CinemaTables data={data}/>
