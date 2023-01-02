@@ -144,7 +144,8 @@ export default function Staff(props) {
             
           </Modal>
         {/* <input className='search' type="search" placeholder='search'/> */}
-        <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Staff</button>
+        <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Staff</button>
+        <div className="space"></div>
         </div>
         <StaffTables/>
       </div>

@@ -170,8 +170,8 @@ export default function Shops(props) {
             
           </Modal>
           {/* <input className='search' type="search" placeholder='search'/> */}
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Shop</button>
-          
+          <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Shop</button>
+          <div className="space"></div>
         </div>
         <ShopsTables/>
       </div>

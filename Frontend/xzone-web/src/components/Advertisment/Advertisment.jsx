@@ -129,7 +129,8 @@ export default function Advertisment(props) {
           </Modal>
           
           {/* <input className='search' type="search" placeholder='search'/> */}
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Ads</button>
+          <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Ads</button>
+          <div className="space"></div>
         </div>
         <AdvertismentTables/>
       </div>

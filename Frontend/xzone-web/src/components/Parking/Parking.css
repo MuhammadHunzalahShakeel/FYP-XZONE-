@@ -6,6 +6,9 @@
 .Parking{
 background-color: #F2F8FF
 }
+.space{
+    margin-bottom: 15px;
+}
 .search{
     box-sizing: border-box;
     position: absolute;

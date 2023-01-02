@@ -94,8 +94,8 @@ export default function Parking(props) {
             
           </Modal>
           {/* <input className='search' type="search" placeholder='search'/> */}
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Parking</button>
-          
+          <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Parking</button>
+          <div className="space"></div>
         </div>
       <ParkingTables/>
       </div>

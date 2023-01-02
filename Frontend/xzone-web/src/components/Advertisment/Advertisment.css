@@ -6,19 +6,13 @@
 * body{
     background-color: #F2F8FF;
 }
+.space{
+    margin-bottom: 15px;
+}
 .Advertisment{
 background-color: #F2F8FF
 }
-/* .Tablebackground{
-    position: absolute;
-    height: 370px;
-    left: 78px;
-    right: 65px;
-    top: 148px;
-    background: #FFFFFF;
-    border-radius: 10px;
-    transform: matrix(1, 0, 0, -1, 0, 0);
-} */
+
 .ui{
     position: absolute ;
     left:100px;
@@ -27,8 +21,6 @@ background-color: #F2F8FF
 }
 
 .search{
-    /* box-sizing: border-box; */
-    /* position: absolute; */
     left: 24%;
     right: 49%;
     background: #FFFFFF;
