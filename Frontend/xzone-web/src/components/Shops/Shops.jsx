@@ -13,50 +13,53 @@ import Header from '../Header/Header.jsx';
 
 export default function Shops(props) {
     const[modal,setmodal]=useState(false)
-    // const theadData = ["No.", "Shop Number", "Shop Name", "Owner Name", "Purpose", "Demand", "Floor", "Area", "Status", "Action"];
-    // const tbodyData = [
-    //     {
-    //         id: "1",
-    //         items: ["1", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-    //     {
-    //         id: "2",
-    //         items: ["2", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-    //     {
-    //         id: "3",
-    //         items: ["3", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-    //     {
-    //         id: "4",
-    //         items: ["4", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-    //     {
-    //         id: "5",
-    //         items: ["5", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-    //     {
-    //         id: "6",
-    //         items: ["6", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-    //     {
-    //         id: "7",
-    //         items: ["7", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-    //     {
-    //         id: "8",
-    //         items: ["8", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-    //     {
-    //         id: "9",
-    //         items: ["9", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-    //     {
-    //         id: "10",
-    //         items: ["10", "Xzone - 101", "LIPID PANEL", "Fatima Bilal", "For Rent", "50k", "1st", "200sq", "Available", ":"],
-    //     },
-        
-    // ];
+    const[toggle,settoggle]=useState(false)
+  const [data, setData] = useState([{
+    "no":1,
+    "Shop_no":"XZS-101",
+    "Shop_Name":"Khaadi",
+    "Owner_Name":"Junaid",
+    "Purpose":"Rent",
+    "Demand":"100k",
+    "Floor":1,
+    "Status":"Not Available"
+},{
+  "no":1,
+    "Shop_no":"XZS-102",
+    "Shop_Name":"Mens",
+    "Owner_Name":"Farooq",
+    "Purpose":"Sell",
+    "Demand":"50000k",
+    "Floor":2,
+    "Status":"Available"
+}])
+const handleSubmit = (e) => {
+  const formData = new FormData(e.currentTarget)
+  e.preventDefault();
+const temp =data[data.length-1].no
+let results = {'no':temp+1}
+
+
+
+  for( let [key, value] of formData.entries()){
+
+//  results.push({
+//       key: key,
+//       value:value
+//     })
+results[key]=value
+  }
+
+//  results.no=data[-1].no+1   
+let temp2= data
+temp2.push(results)
+
+setData(temp2);
+console.log(temp2)
+console.log(data)
+settoggle(true)
+setmodal(!modal)
+}
   return (
     <div >
       <Header/>
@@ -69,7 +72,7 @@ export default function Shops(props) {
               Add Shop
             </ModalHeader>
             <ModalBody> 
-                <form action="">
+                <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                       <div>
@@ -173,7 +176,7 @@ export default function Shops(props) {
           <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Shop</button>
           <div className="space"></div>
         </div>
-        <ShopsTables/>
+        <ShopsTables data={data}/>
       </div>
       {/* <div  className='ui'>
             <Table theadData={theadData} tbodyData={tbodyData} />

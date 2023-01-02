@@ -9,50 +9,51 @@ import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
 export default function Staff(props) {
     const[modal,setmodal]=useState(false)
-    // const theadData = ["No.", "Staff Number", "Staff Name", "Staff Gender", "Staff Age", "Salary", "Joining Date", "Action"];
-    // const tbodyData = [
-    //     {
-    //         id: "1",
-    //         items: ["1", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022", ":"],
-    //     },
-    //     {
-    //         id: "2",
-    //         items: ["2", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
-    //     },
-    //     {
-    //         id: "3",
-    //         items: ["3", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
-    //     },
-    //     {
-    //         id: "4",
-    //         items: ["4", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
-    //     },
-    //     {
-    //         id: "5",
-    //         items: ["5", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
-    //     },
-    //     {
-    //         id: "6",
-    //         items: ["6", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
-    //     },
-    //     {
-    //         id: "7",
-    //         items: ["7", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
-    //     },
-    //     {
-    //         id: "8",
-    //         items: ["8", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
-    //     },
-    //     {
-    //         id: "9",
-    //         items: ["9", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
-    //     },
-    //     {
-    //         id: "10",
-    //         items: ["10", "Xstaff - 101", "LIPID PANEL", "Fatima Bilal", "22yrs", "50k", "14 Oct 2022",  ":"],
-    //     },
-        
-    // ];
+    const[toggle,settoggle]=useState(false)
+  const [data, setData] = useState([{
+    "no":1,
+    "Staff_no":"Xstaff-101",
+    "Staff_Name":"Asim",
+    "Staff_Gender":"Men",
+    "Staff_Age":"30",
+    "Salary":"20k",
+    "Joining_Data":"12-12-21"
+},{
+  "no":2,
+    "Staff_no":"Xstaff-102",
+    "Staff_Name":"Saim",
+    "Staff_Gender":"Men",
+    "Staff_Age":"30",
+    "Salary":"20k",
+    "Joining_Data":"12-02-21"
+}])
+const handleSubmit = (e) => {
+  const formData = new FormData(e.currentTarget)
+  e.preventDefault();
+const temp =data[data.length-1].no
+let results = {'no':temp+1}
+
+
+
+  for( let [key, value] of formData.entries()){
+
+//  results.push({
+//       key: key,
+//       value:value
+//     })
+results[key]=value
+  }
+
+//  results.no=data[-1].no+1   
+let temp2= data
+temp2.push(results)
+
+setData(temp2);
+console.log(temp2)
+console.log(data)
+settoggle(true)
+setmodal(!modal)
+}
   return (
     <div>
       <Header/>
@@ -65,7 +66,7 @@ export default function Staff(props) {
               Add Staff
             </ModalHeader>
             <ModalBody> 
-                <form action="">
+                <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                       <div>
@@ -147,7 +148,7 @@ export default function Staff(props) {
         <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Staff</button>
         <div className="space"></div>
         </div>
-        <StaffTables/>
+        <StaffTables data={data}/>
       </div>
       {/* <div  className='ui'>
             <Table theadData={theadData} tbodyData={tbodyData} />

@@ -2,7 +2,7 @@ import axios from 'axios';
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-const ParkingTables = () => {
+const ParkingTables = (props) => {
     const[modal,setmodal]=useState(false);
     const [search,setSearch]= useState([]);
     const [countries,setCountries]= useState([]);
@@ -11,8 +11,8 @@ const ParkingTables = () => {
     const getCountries = async ()=>{
       try{
         const response = await axios.get("https://restcountries.com/v2/all");
-        setCountries(response.data);
-        setFilteredCountries(response.data);
+        setCountries(props.data);
+        setFilteredCountries(props.data);
       }catch(error){
         console.log(error);
       }
@@ -86,27 +86,27 @@ const ParkingTables = () => {
     const columns=[
       {
         name:"No",
-        selector: row=>row.callingCodes,
+        selector: row=>row.no,
       },
       {
         name:"Car Number",
-        selector: row=>row.numericCode,
+        selector: row=>row.Car_no,
       },
       {
         name:"Arrive At",
-        selector: row=>row.numericCode,
+        selector: row=>row.Arrive_at,
       },
       {
         name:"Depart",
-        selector: row=>row.numericCode,
+        selector: row=>row.Depart,
       },
       {
         name:"Parking Fee",
-        selector: row=>row.numericCode,
+        selector: row=>row.Parking_fee,
       },
       {
         name:"Status",
-        selector: row=>row.numericCode,
+        selector: row=>row.status,
       },
       {
         name:"Action",

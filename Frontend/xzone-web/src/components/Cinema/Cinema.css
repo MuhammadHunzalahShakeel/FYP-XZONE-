@@ -1,0 +1,102 @@
+.CinemaText{
+    margin-left: 100px;
+    margin-top: 13px;
+    
+}
+.space{
+    margin-bottom: 15px;
+}
+.Cinema{
+background-color: #F2F8FF
+}
+
+.search{
+    box-sizing: border-box;
+    position: absolute;
+    left: 21%;
+    right: 53%;
+    top: 63px;
+    bottom: 84%;
+
+    background: #FFFFFF;
+    border: 1px solid #0F6AAB;
+    border-radius: 5px;
+}
+.Adsbutton{
+    /* display: flex; */
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: center;
+    /* padding: 8px 16px; */
+    gap: 4px;
+    color: #FFFFFF;
+
+    position: absolute;
+    width: 119px;
+    height: 40px;
+    /* left: 1734px;
+    top: 108px; */
+
+    background: #0F6AAB;
+    border-radius: 4px #0F6AAB;
+}
+/* span{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 4px;
+    color: #FFFFFF;
+
+    position: absolute;
+    width: 93px;
+    height: 32px;
+    left: 1129px;
+    top: 58px;
+    
+
+    background: #0F6AAB;
+    border-radius: 4px;
+    cursor: pointer;
+} */
+.ui{
+    position: absolute ;
+    left:100px;
+    top:160px;
+
+}
+
+.button1{
+    position: relative;
+    left: 1022px;
+    top: -40px;
+
+}
+a.button1{
+    
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #0F6AAB;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    background-color:#0F6AAB;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#ffffff;
+    text-align:center;
+    transition: all 0.2s;
+}
+a.button1:hover{
+    color:#0F6AAB;
+    background-color:#ffffff;
+}
+@media all and (max-width:30em){
+a.button1
+{
+    display:block;
+    margin:0.4em auto;
+}
+}

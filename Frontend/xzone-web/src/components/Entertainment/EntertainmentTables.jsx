@@ -2,7 +2,7 @@ import axios from 'axios';
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-const EntertainmentTables = () => {
+const EntertainmentTables = (props) => {
     const[modal,setmodal]=useState(false);
     const [search,setSearch]= useState([]);
     const [countries,setCountries]= useState([]);
@@ -11,8 +11,8 @@ const EntertainmentTables = () => {
     const getCountries = async ()=>{
       try{
         const response = await axios.get("https://restcountries.com/v2/all");
-        setCountries(response.data);
-        setFilteredCountries(response.data);
+        setCountries(props.data);
+        setFilteredCountries(props.data);
       }catch(error){
         console.log(error);
       }
@@ -86,27 +86,27 @@ const EntertainmentTables = () => {
     const columns=[
       {
         name:"No",
-        selector: row=>row.callingCodes,
+        selector: row=>row.no,
       },
       {
         name:"Food Court No",
-        selector: row=>row.numericCode,
+        selector: row=>row.Food_no,
       },
       {
         name:"Name",
-        selector: row=>row.numericCode,
+        selector: row=>row.Brand_Name,
       },
       {
         name:"Category",
-        selector: row=>row.numericCode,
+        selector: row=>row.Category,
       },
       {
         name:"Description",
-        selector: row=>row.numericCode,
+        selector: row=>row.Description,
       },
       {
         name:"Website",
-        selector: row=>row.numericCode,
+        selector: row=>row.Website,
       },
       {
         name:"Action",

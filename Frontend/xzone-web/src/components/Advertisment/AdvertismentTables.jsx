@@ -2,17 +2,35 @@ import axios from 'axios';
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-const AdvertismentTables = () => {
+const AdvertismentTables = (props) => {
     const[modal,setmodal]=useState(false);
     const [search,setSearch]= useState([]);
     const [countries,setCountries]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
-
+    
+    const data=[{
+      "no":1,
+      "Ad_no":34,
+      "Ads_shop":"adad",
+      "Ads_cat":"adad",
+      "Instructions_shop":"instructions",
+      "views":34
+  },{
+    "no":2,
+    "Ad_no":44,
+    "Ads_shop":"aad",
+    "Ads_cat":"add",
+    "Instructions_shop":"instruct",
+    "views":45
+}];
     const getCountries = async ()=>{
       try{
         const response = await axios.get("https://restcountries.com/v2/all");
-        setCountries(response.data);
-        setFilteredCountries(response.data);
+        
+        setCountries(props.data);
+        console.log(typeof(props.data));
+        console.log(typeof(response.data));
+        setFilteredCountries(props.data);
       }catch(error){
         console.log(error);
       }
@@ -83,30 +101,32 @@ const AdvertismentTables = () => {
             </ModalBody>
             
     </Modal>
+    
+    
     const columns=[
       {
         name:"No",
-        selector: row=>row.callingCodes,
+        selector: row=>row.no,
       },
       {
         name:"Ads No",
-        selector: row=>row.callingCodes,
+        selector: row=>row.Ad_no,
       },
       {
         name:"Ads Shop",
-        selector: row=>row.numericCode,
+        selector: row=>row.Ads_shop,
       },
       {
         name:"Ads Category",
-        selector: row=>row.numericCode,
+        selector: row=>row.Ads_cat,
       },
       {
         name:"Instructions",
-        selector: row=>row.numericCode,
+        selector: row=>row.Instructions_shop,
       },
       {
         name:"View Ads",
-        selector: row=>row.numericCode,
+        selector: row=>row.views,
       },
       {
         name:"Action",
@@ -119,11 +139,11 @@ const AdvertismentTables = () => {
   
     useEffect(()=>{
       getCountries();
-    },{});
+    },[]);
     
     useEffect(()=>{
         const result = countries.filter(country=>{
-            return country.name.toLowerCase().match(search.toLowerCase());
+            return country.Ads_shop.toLowerCase().match(search.toLowerCase());
         })
         setFilteredCountries(result);
     },[search]);

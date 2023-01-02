@@ -9,50 +9,44 @@ import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
 export default function  Entertainment(props) {
     const[modal,setmodal]=useState(false)
-    // const theadData = ["No.", "Food Court No", "Name", "Category", "Description", "Website", "Action"];
-    // const tbodyData = [
-    //     {
-    //         id: "1",
-    //         items: ["1", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",  ":"],
-    //     },
-    //     {
-    //         id: "2",
-    //         items: ["2", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
-    //     },
-    //     {
-    //         id: "3",
-    //         items: ["3", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
-    //     },
-    //     {
-    //         id: "4",
-    //         items: ["4", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
-    //     },
-    //     {
-    //         id: "5",
-    //         items: ["5", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
-    //     },
-    //     {
-    //         id: "6",
-    //         items: ["6", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
-    //     },
-    //     {
-    //         id: "7",
-    //         items: ["7", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
-    //     },
-    //     {
-    //         id: "8",
-    //         items: ["8", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
-    //     },
-    //     {
-    //         id: "9",
-    //         items: ["9", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
-    //     },
-    //     {
-    //         id: "10",
-    //         items: ["10", "ADF - 568", "LIPID PANEL", "Chinese", "Brand Description", "url of website",   ":"],
-    //     },
-        
-    // ];
+    const[toggle,settoggle]=useState(false)
+  const [data, setData] = useState([{
+    "no":1,
+    "Food_no":"FC-001",
+    "Brand_Name":"KFC",
+    "Category":"Fast Food",
+    "Description":"KFC is a Fast Food Shop",
+    "Website":"www.kfc.com"
+},{
+  "no":2,
+    "Food_no":"FC-002",
+    "Brand_Name":"OPTP",
+    "Category":"Fast Food",
+    "Description":"OPTP is a Fast Food Shop",
+    "Website":"www.optp.com"
+}])
+const handleSubmit = (e) => {
+  const formData = new FormData(e.currentTarget)
+  e.preventDefault();
+const temp =data[data.length-1].no
+let results = {'no':temp+1}
+
+
+
+  for( let [key, value] of formData.entries()){
+
+results[key]=value
+  }
+
+let temp2= data
+temp2.push(results)
+
+setData(temp2);
+console.log(temp2)
+console.log(data)
+settoggle(true)
+setmodal(!modal)
+}
   return (
     <div>
       <Header/>
@@ -65,7 +59,7 @@ export default function  Entertainment(props) {
               Add Brand
             </ModalHeader>
             <ModalBody> 
-                <form action="">
+                <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                       <div>
@@ -136,7 +130,7 @@ export default function  Entertainment(props) {
           <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Brand</button>
           <div className="space"></div>
         </div>
-        <EntertainmentTables/>
+        <EntertainmentTables data={data}/>
       </div>
       {/* <div  className='ui'>
             <Table theadData={theadData} tbodyData={tbodyData} />

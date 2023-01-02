@@ -2,7 +2,7 @@ import axios from 'axios';
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-const ShopsTables = () => {
+const ShopsTables = (props) => {
     const[modal,setmodal]=useState(false);
     const [search,setSearch]= useState([]);
     const [countries,setCountries]= useState([]);
@@ -11,8 +11,8 @@ const ShopsTables = () => {
     const getCountries = async ()=>{
       try{
         const response = await axios.get("https://restcountries.com/v2/all");
-        setCountries(response.data);
-        setFilteredCountries(response.data);
+        setCountries(props.data);
+        setFilteredCountries(props.data);
       }catch(error){
         console.log(error);
       }
@@ -86,35 +86,35 @@ const ShopsTables = () => {
     const columns=[
       {
         name:"No",
-        selector: row=>row.callingCodes,
+        selector: row=>row.no,
       },
       {
-        name:"Shop Nor",
-        selector: row=>row.numericCode,
+        name:"Shop No",
+        selector: row=>row.Shop_no,
       },
       {
         name:"Shop Name",
-        selector: row=>row.numericCode,
+        selector: row=>row.Shop_Name,
       },
       {
         name:"Owner Name",
-        selector: row=>row.numericCode,
+        selector: row=>row.Owner_Name,
       },
       {
         name:"Purpose",
-        selector: row=>row.numericCode,
+        selector: row=>row.Purpose,
       },
       {
         name:"Demand",
-        selector: row=>row.numericCode,
+        selector: row=>row.Demand,
       },
       {
         name:"Floor",
-        selector: row=>row.numericCode,
+        selector: row=>row.Floor,
       },
       {
         name:"Status",
-        selector: row=>row.numericCode,
+        selector: row=>row.Status,
       },
       {
         name:"Action",

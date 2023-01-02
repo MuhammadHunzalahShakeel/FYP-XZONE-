@@ -2,7 +2,7 @@ import axios from 'axios';
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-const StaffTables = (props) => {
+const CinemaTables = (props) => {
     const[modal,setmodal]=useState(false);
     const [search,setSearch]= useState([]);
     const [countries,setCountries]= useState([]);
@@ -89,28 +89,20 @@ const StaffTables = (props) => {
         selector: row=>row.no,
       },
       {
-        name:"Staff No",
-        selector: row=>row.Staff_no,
+        name:"Cinema No",
+        selector: row=>row.Cinema_no,
       },
       {
         name:"Name",
-        selector: row=>row.Staff_Name,
+        selector: row=>row.Cinema_Name,
       },
       {
-        name:"Gender",
-        selector: row=>row.Staff_Gender,
+        name:"Description",
+        selector: row=>row.Description,
       },
       {
-        name:"Age",
-        selector: row=>row.Staff_Age,
-      },
-      {
-        name:"Salary",
-        selector: row=>row.Salary,
-      },
-      {
-        name:"Joining Date",
-        selector: row=>row.Joining_Data,
+        name:"Website",
+        selector: row=>row.Website,
       },
       {
         name:"Action",
@@ -154,4 +146,4 @@ const StaffTables = (props) => {
   )
 }
 
-export default StaffTables
+export default CinemaTables

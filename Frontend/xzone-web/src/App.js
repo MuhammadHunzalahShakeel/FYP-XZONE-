@@ -10,6 +10,7 @@ import Parking from './components/Parking/Parking';
 import Customer from './components/Customer/Customer';
 import Profile from './components/Profile/Profile';
 import Navmenu from './components/Navmenu/Navmenu';
+import Cinema from './components/Cinema/Cinema';
 import Entertainment from './components/Entertainment/Entertainment';
 import Header from './components/Header/Header';
 import Advertisment from './components/Advertisment/Advertisment';
@@ -34,7 +35,8 @@ const App = () => {
               <Route path="/parking" element={<Parking title='Parking'/>} />
               <Route path="/staff" element={<Staff title='Staff'/>} />
               <Route path="/entertainment" element={<Entertainment title='Food Court'/>} />
-              <Route path="/customer" element={<Customer title='Customer' />} />
+              <Route path="/cinema" element={<Cinema title='Cinema'/>} />
+              {/* <Route path="/customer" element={<Customer title='Customer' />} /> */}
               <Route path="/profile" element={<Profile title='Profile' />} />
           </Route>
           <Route>

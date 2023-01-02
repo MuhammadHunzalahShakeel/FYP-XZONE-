@@ -1,33 +1,27 @@
 import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
+import './Cinema.css'
 import Button from '@mui/material/Button';
-import './Parking.css'
-import ParkingTables from './ParkingTables.jsx';
 import Table from "../Table/Table.jsx";
-import  { Component } from 'react';
+import CinemaTables from './CinemaTables.jsx';
 import { Link } from "react-router-dom";
-import PropTypes  from 'prop-types'
 import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
-
-
-export default function Parking(props) {
-  const[modal,setmodal]=useState(false);
-  const[toggle,settoggle]=useState(false);
+export default function  Cinema(props) {
+    const[modal,setmodal]=useState(false)
+    const[toggle,settoggle]=useState(false)
   const [data, setData] = useState([{
     "no":1,
-    "Car_no":"ADF-568",
-    "Arrive_at":"02-10-22 11:30 P.M",
-    "Depart":"02-10-22 04:30 P.M",
-    "Parking_fee":"500",
-    "status":"Paid"
+    "Cinema_no":"XC-001",
+    "Cinema_Name":"Nueplex Cinema",
+    "Description":"Nueplex Cinema is a best cinema",
+    "Website":"www.nueplexcinema.com"
 },{
-  "no":2,
-  "Car_no":"ADF-456",
-  "Arrive_at":"03-10-22 12:30 P.M",
-  "Depart":"03-10-22 01:30 P.M",
-  "Parking_fee":"500",
-   "status":"Not Paid"
+  "no":1,
+    "Cinema_no":"XC-002",
+    "Cinema_Name":"Saba Cinema",
+    "Description":"Saba Cinema is a best cinema",
+    "Website":"www.sabacinema.com"
 }])
 const handleSubmit = (e) => {
   const formData = new FormData(e.currentTarget)
@@ -39,14 +33,9 @@ let results = {'no':temp+1}
 
   for( let [key, value] of formData.entries()){
 
-//  results.push({
-//       key: key,
-//       value:value
-//     })
 results[key]=value
   }
 
-//  results.no=data[-1].no+1   
 let temp2= data
 temp2.push(results)
 
@@ -56,17 +45,16 @@ console.log(data)
 settoggle(true)
 setmodal(!modal)
 }
-  
   return (
-    <div >
+    <div>
       <Header/>
-       <Navmenu/>
-      <div className="ParkingText">
+      {/* <Navmenu/> */}
+      <div className=" CinemaText">
         <h3>{props.title}</h3>
         <div>
           <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
             <ModalHeader toggle={()=>setmodal(!modal)}>
-              Add Parking
+              Add Brand
             </ModalHeader>
             <ModalBody> 
                 <form onSubmit={handleSubmit}>
@@ -74,56 +62,56 @@ setmodal(!modal)
                     <Col lg={12}>
                       <div>
                         <label htmlFor="">
-                          Car Number
+                         Food Court No
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Car Number'
+                        placeholder='Enter Food Court No'
                         name='oldPassword'>
                       </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Arrivet At
+                          Brand Name
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Arrivet At'
+                        placeholder='Enter Name'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Depart
+                          Category
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Depart'
+                        placeholder='Enter Category'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Parking Fee
+                          Description
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Parking Fee'
+                        placeholder='Enter Description'
                         name='oldPassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor='oldPassword'>
-                          Status
+                          Website
                         </label>
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Status'
+                        placeholder='Enter Website'
                         name='oldPassword'>
                         </input>
                       </div>
@@ -137,13 +125,14 @@ setmodal(!modal)
             
           </Modal>
           {/* <input className='search' type="search" placeholder='search'/> */}
-          <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Parking</button>
+          <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Brand</button>
           <div className="space"></div>
         </div>
-      <ParkingTables data={data}/>
+        <CinemaTables data={data}/>
       </div>
-      
-     
+      {/* <div  className='ui'>
+            <Table theadData={theadData} tbodyData={tbodyData} />
+      </div> */}
     </div>
   )
 }

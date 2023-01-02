@@ -5,6 +5,7 @@ import './Navmenu.css'
 import Logo from "../../assets/Logo.svg"
 import AdvertismentNavMenu from "../../assets/AdvertismentNavMenu.svg"
 import ShopNavMenu from "../../assets/ShopNavMenu.svg"
+import CinemaNavMenu from "../../assets/CinemaNavMenu.svg"
 import ParkingNavMenu from "../../assets/ParkingNavMenu.svg"
 import StaffNavMenu from "../../assets/StaffNavMenu.svg"
 import Entertainment from "../../assets/Entertainment.svg"
@@ -20,7 +21,8 @@ export default function Navmenu() {
           <Link to="/parking" ><img className='Parking' id='Navmenuicon'             src={ParkingNavMenu} ></img></Link>
           <Link to="/staff" ><img className='Staff'   id='Navmenuicon'             src={StaffNavMenu} ></img>  </Link>
           <Link to="/entertainment" ><img className='Entertainment' id='Navmenuicon'  src={Entertainment} ></img></Link>
-          <Link to="/customer" ><img className='Customer' id='Navmenuicon' src={CustomerNavMenu} ></img></Link> 
+          <Link to="/cinema" ><img className='Cinema' id='Navmenuicon'  src={CinemaNavMenu} ></img></Link>
+          {/* <Link to="/customer" ><img className='Customer' id='Navmenuicon' src={CustomerNavMenu} ></img></Link>  */}
         </div>
     </div>  
   )
