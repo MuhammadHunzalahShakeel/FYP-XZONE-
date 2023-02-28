@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
@@ -10,91 +11,102 @@ const ParkingTables = (props) => {
 
     const getCountries = async ()=>{
       try{
-        const response = await axios.get("https://restcountries.com/v2/all");
-        setCountries(props.data);
-        setFilteredCountries(props.data);
+        let axiosConfig = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              "Access-Control-Allow-Origin": "*",
+              "token":localStorage.getItem("token")
+          }
+        };
+        const response = await axios.get("http://localhost:5000/api/parking",axiosConfig).then((response)=>{
+          console.log(response.data);
+          // setapidata(response.data)};
+          setCountries(response.data);
+          setFilteredCountries(response.data);
+      }
+          );
       }catch(error){
         console.log(error);
       }
     };
-    <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
-            <ModalHeader toggle={()=>setmodal(!modal)}>
-              Edit Profile
-            </ModalHeader>
-            <ModalBody> 
-                <form action="">
-                  <Row>
-                    <Col lg={12}>
-                      <div>
-                        <label htmlFor="">
-                          Name
-                        </label>
-                        <input
-                        type='text'
-                        className='form-control'
-                        placeholder='Enter Name'
-                        name='name'>
-                      </input>
-                      </div>
-                      <div>
-                        <label htmlFor='oldPassword'>
-                          Email Address
-                        </label>
-                        <input
-                        type='email'
-                        className='form-control'
-                        placeholder='Enter Email Address'
-                        name='email'>
-                        </input>
-                      </div>
-                      <div>
-                        <label htmlFor='oldPassword'>
-                          Password
-                        </label>
-                        <input
-                        type='password'
-                        className='form-control'
-                        placeholder='Enter Password'
-                        name='password'>
-                        </input>
-                      </div>
-                      <div>
-                        <label htmlFor='oldPassword'>
-                          Confirm Password
-                        </label>
-                        <input
-                        type='password'
-                        className='form-control'
-                        placeholder='Enter Confirm Password'
-                        name='confirmpassword'>
-                        </input>
-                      </div>
-                      <div>
-                        <label htmlFor="img">Select image:</label>
-                        <input type="file" className='form-control' id="img" name="profileimg" accept="image/*"></input>
-                      </div>
+    // <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
+    //         <ModalHeader toggle={()=>setmodal(!modal)}>
+    //           Edit Profile
+    //         </ModalHeader>
+    //         <ModalBody> 
+    //             <form action="">
+    //               <Row>
+    //                 <Col lg={12}>
+    //                   <div>
+    //                     <label htmlFor="">
+    //                       Name
+    //                     </label>
+    //                     <input
+    //                     type='text'
+    //                     className='form-control'
+    //                     placeholder='Enter Name'
+    //                     name='name'>
+    //                   </input>
+    //                   </div>
+    //                   <div>
+    //                     <label htmlFor='oldPassword'>
+    //                       Email Address
+    //                     </label>
+    //                     <input
+    //                     type='email'
+    //                     className='form-control'
+    //                     placeholder='Enter Email Address'
+    //                     name='email'>
+    //                     </input>
+    //                   </div>
+    //                   <div>
+    //                     <label htmlFor='oldPassword'>
+    //                       Password
+    //                     </label>
+    //                     <input
+    //                     type='password'
+    //                     className='form-control'
+    //                     placeholder='Enter Password'
+    //                     name='password'>
+    //                     </input>
+    //                   </div>
+    //                   <div>
+    //                     <label htmlFor='oldPassword'>
+    //                       Confirm Password
+    //                     </label>
+    //                     <input
+    //                     type='password'
+    //                     className='form-control'
+    //                     placeholder='Enter Confirm Password'
+    //                     name='confirmpassword'>
+    //                     </input>
+    //                   </div>
+    //                   <div>
+    //                     <label htmlFor="img">Select image:</label>
+    //                     <input type="file" className='form-control' id="img" name="profileimg" accept="image/*"></input>
+    //                   </div>
                      
-                    </Col>
-                  </Row>
-                </form> 
-                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}>Save</button>
-                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+    //                 </Col>
+    //               </Row>
+    //             </form> 
+    //             <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}>Save</button>
+    //             <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
                 
-            </ModalBody>
+    //         </ModalBody>
             
-    </Modal>
+    // </Modal>
     const columns=[
       {
         name:"No",
-        selector: row=>row.no,
+        selector: row=>row.id,
       },
       {
         name:"Car Number",
-        selector: row=>row.Car_no,
+        selector: row=>row.carNumber,
       },
       {
         name:"Arrive At",
-        selector: row=>row.Arrive_at,
+        selector: row=>row.ArrivedAt,
       },
       {
         name:"Depart",
@@ -102,7 +114,7 @@ const ParkingTables = (props) => {
       },
       {
         name:"Parking Fee",
-        selector: row=>row.Parking_fee,
+        selector: row=>row.fees,
       },
       {
         name:"Status",
@@ -113,10 +125,33 @@ const ParkingTables = (props) => {
         cell:(row) =>(<button className='btn btn-primary' onClick={()=>setmodal(true)} >Edit</button>),
       },
       {
-        cell:(row) =>(<button className='btn btn-danger' onClick={()=>alert(row.numericCode)} >Delete</button>),
+        cell:(row) =>(<button className='btn btn-danger' onClick={() => handleDelete(row.id)}>Delete</button>),
       }
     ]
-  
+    const navigate = useNavigate();
+    const handleDelete = (_id) => {
+      // setData(data.filter((row) => row.id !== id));
+      console.log(_id);
+      try{
+        let axiosConfig = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              "Access-Control-Allow-Origin": "*",
+              "token":localStorage.getItem("token")
+          }
+        };
+      const response = axios.get("http://localhost:5000/api/parking/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
+        
+        navigate("/shops");
+        window.location.reload();
+      }
+      else{
+        console.log(response)
+      }
+  });
+}catch(error){
+  console.log(error)
+}}
     useEffect(()=>{
       getCountries();
     },{});

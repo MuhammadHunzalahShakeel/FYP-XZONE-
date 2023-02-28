@@ -1,6 +1,6 @@
 import "./Chatbot.css";
 import image from "../../assets/LogoChatBot.svg"
-import { useState, useRef } from "react";
+import React,{ useState, useRef } from "react";
 
 function Chatbot() {
   const humanMessage = useRef();

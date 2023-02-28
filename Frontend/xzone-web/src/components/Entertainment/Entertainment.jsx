@@ -1,13 +1,21 @@
 import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import './Entertainment.css'
+import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import Table from "../Table/Table.jsx";
 import EntertainmentTables from './EntertainmentTables.jsx';
 import { Link } from "react-router-dom";
 import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
+import { useEffect } from 'react';
+import axios from "axios";
+
 export default function  Entertainment(props) {
+  const postURL = "http://localhost:5000/api/FoodCourt";
+  const getURL = "http://localhost:5000/api/FoodCourt";
+  const [apidata,setapidata]=useState([]);
+  const [storedata, storeapidata] = useState({Name: '',Email:'',Category:'',Description:'',Website:''})
     const[modal,setmodal]=useState(false)
     const[toggle,settoggle]=useState(false)
   const [data, setData] = useState([{
@@ -25,27 +33,92 @@ export default function  Entertainment(props) {
     "Description":"OPTP is a Fast Food Shop",
     "Website":"www.optp.com"
 }])
-const handleSubmit = (e) => {
-  const formData = new FormData(e.currentTarget)
+useEffect(()=>{
+  let axiosConfig = {
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        "token":localStorage.getItem("token")
+    }
+  };
+  axios.get(getURL,axiosConfig).then((response)=>{
+    console.log(response.data)
+    setapidata(response.data)
+  })
+},[]);
+const navigate = useNavigate();
+  const handleChange = (e) => {
+    if ( e.target.name === 'brandName'){
+      storeapidata({ ...storedata, Name: e.target.value }) ;
+    }
+    else if ( e.target.name === 'brandEmail'){
+      storeapidata({ ...storedata,Email: e.target.value }) ;
+    }
+    else if ( e.target.name === 'category'){
+      storeapidata({ ...storedata, Category: e.target.value }) ;
+    }
+    else if ( e.target.name === 'description'){
+      storeapidata({ ...storedata, Description: e.target.value }) ;
+    }
+    else if ( e.target.name === 'website'){
+      storeapidata({ ...storedata, Website: e.target.value }) ;
+    }
+
+}
+// const handleSubmit = (e) => {
+//   const formData = new FormData(e.currentTarget)
+//   e.preventDefault();
+// const temp =data[data.length-1].no
+// let results = {'no':temp+1}
+
+
+
+//   for( let [key, value] of formData.entries()){
+
+// results[key]=value
+//   }
+
+// let temp2= data
+// temp2.push(results)
+
+// setData(temp2);
+// console.log(temp2)
+// console.log(data)
+// settoggle(true)
+// setmodal(!modal)
+// }
+const handleSubmit = async (e) => {
   e.preventDefault();
-const temp =data[data.length-1].no
-let results = {'no':temp+1}
+  try {
+    // await login({ variables: { email: loginData.email, password: loginData.password } });
+    console.log(storedata)
+    
+    // console.log(error, '123123')
+    // console.log(loading)
+    let axiosConfig = {
+      headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          "Access-Control-Allow-Origin": "*",
+          "token":localStorage.getItem("token")
+      }
+    };
+    axios
+    .post(postURL, storedata,axiosConfig)
+    .then((response) => {if(response.status===200){
+      console.log(response.data)
+      navigate("/entertainment");
+        window.location.reload();
+    }
+    else{
+      console.log(response)
+    }
+});
+}
+    
+  catch (error) {
+    console.log(error.message)
+}
 
-
-
-  for( let [key, value] of formData.entries()){
-
-results[key]=value
-  }
-
-let temp2= data
-temp2.push(results)
-
-setData(temp2);
-console.log(temp2)
-console.log(data)
-settoggle(true)
-setmodal(!modal)
 }
   return (
     <div>
@@ -62,26 +135,29 @@ setmodal(!modal)
                 <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
-                      <div>
-                        <label htmlFor="">
-                         Food Court No
-                        </label>
-                        <input
-                        type='text'
-                        className='form-control'
-                        placeholder='Enter Food Court No'
-                        name='oldPassword'>
-                      </input>
-                      </div>
+                     
                       <div>
                         <label htmlFor='oldPassword'>
                           Brand Name
                         </label>
                         <input
                         type='text'
+                        onChange={handleChange}
                         className='form-control'
                         placeholder='Enter Name'
-                        name='oldPassword'>
+                        name='brandName'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Brand Email
+                        </label>
+                        <input
+                        type='text'
+                        onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Email'
+                        name='brandEmail'>
                         </input>
                       </div>
                       <div>
@@ -90,9 +166,10 @@ setmodal(!modal)
                         </label>
                         <input
                         type='text'
+                        onChange={handleChange}
                         className='form-control'
                         placeholder='Enter Category'
-                        name='oldPassword'>
+                        name='category'>
                         </input>
                       </div>
                       <div>
@@ -101,9 +178,10 @@ setmodal(!modal)
                         </label>
                         <input
                         type='text'
+                        onChange={handleChange}
                         className='form-control'
                         placeholder='Enter Description'
-                        name='oldPassword'>
+                        name='description'>
                         </input>
                       </div>
                       <div>
@@ -112,16 +190,17 @@ setmodal(!modal)
                         </label>
                         <input
                         type='text'
+                        onChange={handleChange}
                         className='form-control'
                         placeholder='Enter Website'
-                        name='oldPassword'>
+                        name='website'>
                         </input>
                       </div>
                     </Col>
                   </Row>
-                </form> 
-                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}>Save</button>
+                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}  type="submit">Save</button>
                 <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                </form> 
                 
             </ModalBody>
             
@@ -130,7 +209,7 @@ setmodal(!modal)
           <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Brand</button>
           <div className="space"></div>
         </div>
-        <EntertainmentTables data={data}/>
+        <EntertainmentTables data={apidata}/>
       </div>
       {/* <div  className='ui'>
             <Table theadData={theadData} tbodyData={tbodyData} />

@@ -1,16 +1,17 @@
-.Shoppingimage{
-    width: 462px;  
+.Signup_image{
+    width: 90%;  
+    height: 100%;
 }
-.login{
+.Signup{
     margin: 0;
     padding: 0;
 }
-.Loginleft {
+.Signupleft {
     width: 50%;
     float: left;
    
 }  
-.Loginright {
+.Signupright {
     width: 50%;
     float: left;  
     padding-right: 150px;
@@ -24,26 +25,26 @@
     margin-bottom: 60px;
 }
 
-.Loginright>p{
+.Signupright>p{
     margin-bottom: 5px;
 }
-.Loginright>h2{
+.Signupright>h2{
     margin-bottom: 20px;
 }
-.Loginright>input{
+.Signupright>input{
     width: 10px;
 }
-.loginbutton{
+.Signupbutton{
     color: rgb(255, 255, 255);
     text-decoration: none;
 }
-.loginbutton:hover {
+.Signupbutton:hover {
     color: rgb(255, 255, 255);
   }
-  .signup{
+.signin{
     align-items: center;
     padding-top: 20px;
 }
-.linktosignup{
+.linktosignin{
     text-decoration: none;
 }

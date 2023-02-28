@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter, Routes,Route,Router,Link,Navlink,Switch } from "react-router-dom"
 import './App.css';
 import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
 import Shops from './components/Shops/Shops';
 import Staff from './components/Staff/Staff';
 // import Ads from './components/Ads/Ads';
@@ -41,6 +42,7 @@ const App = () => {
           </Route>
           <Route>
               <Route path="/login" element={<Login/>} />
+              <Route path="/signup" element={<Signup/>} />
           </Route>
         </Routes>
       </BrowserRouter>

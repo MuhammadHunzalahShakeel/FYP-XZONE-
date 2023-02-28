@@ -1,49 +1,120 @@
 import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import './Cinema.css'
+import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import Table from "../Table/Table.jsx";
 import CinemaTables from './CinemaTables.jsx';
 import { Link } from "react-router-dom";
 import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
+import { useEffect } from 'react';
+import axios from "axios";
+
 export default function  Cinema(props) {
+  const postURL = "http://localhost:5000/api/cinema";
+  const getURL = "http://localhost:5000/api/cinema";
+  const [apidata,setapidata]=useState([]);
+  const [storedata, storeapidata] = useState({Name: '',Email:'',Description:'',Website:''})
     const[modal,setmodal]=useState(false)
     const[toggle,settoggle]=useState(false)
   const [data, setData] = useState([{
-    "no":1,
-    "Cinema_no":"XC-001",
-    "Cinema_Name":"Nueplex Cinema",
-    "Description":"Nueplex Cinema is a best cinema",
-    "Website":"www.nueplexcinema.com"
+    no:1,
+    Cinema_no:"XC-001",
+    Cinema_Name:"Nueplex Cinema",
+    Description:"Nueplex Cinema is a best cinema",
+    Website:"www.nueplexcinema.com"
 },{
-  "no":1,
-    "Cinema_no":"XC-002",
-    "Cinema_Name":"Saba Cinema",
-    "Description":"Saba Cinema is a best cinema",
-    "Website":"www.sabacinema.com"
+  no:2,
+    Cinema_no:"XC-002",
+    Cinema_Name:"Saba Cinema",
+    Description:"Saba Cinema is a best cinema",
+    Website:"www.sabacinema.com"
 }])
-const handleSubmit = (e) => {
-  const formData = new FormData(e.currentTarget)
-  e.preventDefault();
-const temp =data[data.length-1].no
-let results = {'no':temp+1}
-
-
-
-  for( let [key, value] of formData.entries()){
-
-results[key]=value
+useEffect(()=>{
+  let axiosConfig = {
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        "token":localStorage.getItem("token")
+    }
+  };
+  axios.get(getURL,axiosConfig).then((response)=>{
+    console.log(response.data)
+    setapidata(response.data)
+  })
+},[]);
+const navigate = useNavigate();
+const handleChange = (e) => {
+  if ( e.target.name === 'cinemaName'){
+    storeapidata({ ...storedata, Name: e.target.value }) ;
+  }
+  else if ( e.target.name === 'cinemaEmail'){
+    storeapidata({ ...storedata,Email: e.target.value }) ;
+  }
+  else if ( e.target.name === 'description'){
+    storeapidata({ ...storedata, Description: e.target.value }) ;
+  }
+  else if ( e.target.name === 'website'){
+    storeapidata({ ...storedata, Website: e.target.value }) ;
   }
 
-let temp2= data
-temp2.push(results)
+}
 
-setData(temp2);
-console.log(temp2)
-console.log(data)
-settoggle(true)
-setmodal(!modal)
+// const handleSubmit = (e) => {
+//   const formData = new FormData(e.currentTarget)
+//   e.preventDefault();
+// const temp =data[data.length-1].no
+// let results = {'no':temp+1}
+
+
+
+//   for( let [key, value] of formData.entries()){
+
+// results[key]=value
+//   }
+
+// let temp2= data
+// temp2.push(results)
+
+// setData(temp2);
+// console.log(temp2)
+// console.log(data)
+// settoggle(true)
+// setmodal(!modal)
+// }
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    // await login({ variables: { email: loginData.email, password: loginData.password } });
+    console.log(storedata)
+    
+    // console.log(error, '123123')
+    // console.log(loading)
+    let axiosConfig = {
+      headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          "Access-Control-Allow-Origin": "*",
+          "token":localStorage.getItem("token")
+      }
+    };
+    axios
+    .post(postURL, storedata,axiosConfig)
+    .then((response) => {if(response.status===200){
+      console.log(response.data)
+      navigate("/cinema");
+        window.location.reload();
+    }
+    else{
+      console.log(response)
+    }
+});
+}
+    
+  catch (error) {
+    console.log(error.message)
+}
+
 }
   return (
     <div>
@@ -60,26 +131,29 @@ setmodal(!modal)
                 <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
-                      <div>
-                        <label htmlFor="">
-                         Cinema No
-                        </label>
-                        <input
-                        type='text'
-                        className='form-control'
-                        placeholder='Enter Cinema No'
-                        name='oldPassword'>
-                      </input>
-                      </div>
+                    
                       <div>
                         <label htmlFor='oldPassword'>
                           Cinema Name
                         </label>
                         <input
                         type='text'
+                        onChange={handleChange}
                         className='form-control'
                         placeholder='Enter Cinema Name'
-                        name='oldPassword'>
+                        name='cinemaName'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Cinema Email
+                        </label>
+                        <input
+                        type='text'
+                        onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Cinema Email'
+                        name='cinemaEmail'>
                         </input>
                       </div>
                       <div>
@@ -88,9 +162,10 @@ setmodal(!modal)
                         </label>
                         <input
                         type='text'
+                        onChange={handleChange}
                         className='form-control'
                         placeholder='Enter Description'
-                        name='oldPassword'>
+                        name='description'>
                         </input>
                       </div>
                       <div>
@@ -99,25 +174,27 @@ setmodal(!modal)
                         </label>
                         <input
                         type='text'
+                        onChange={handleChange}
                         className='form-control'
                         placeholder='Enter Website'
-                        name='oldPassword'>
+                        name='website'>
                         </input>
                       </div>
                     </Col>
                   </Row>
-                </form> 
-                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}>Save</button>
+                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
                 <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                </form> 
                 
             </ModalBody>
             
           </Modal>
           {/* <input className='search' type="search" placeholder='search'/> */}
           <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Cinema</button>
+          {/* <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={onAddCinema}>Add Cinema</button> */}
           <div className="space"></div>
         </div>
-        <CinemaTables data={data}/>
+        <CinemaTables  data={apidata}/>
       </div>
       {/* <div  className='ui'>
             <Table theadData={theadData} tbodyData={tbodyData} />

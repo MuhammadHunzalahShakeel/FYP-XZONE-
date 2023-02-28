@@ -12,13 +12,14 @@ export default function Header() {
   return (
       <div className="Header">
           <img src={Logo} alt="" className="Headerlogo" />
-          <Link to="/profile" ><img src={Admin} alt="" className="Admin" /></Link>
+          <img  src={Admin} alt="" className="Admin" />
+
           {/* <img src={Admin} alt="" className="Admin" /> */}
-          {/* <div className='profilebackground'>
+          <div className='profilebackground'>
             <div className='profiledropdown'><Link to="/profile" className='profiledropdown' >My Profile</Link></div>
             <hr />
             <div className='profiledropdown'><Link to="/login" className='profiledropdown' >Logout</Link></div>   
-          </div> */}
+          </div>
       </div>
       
   )

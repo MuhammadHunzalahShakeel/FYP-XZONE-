@@ -16,7 +16,7 @@ export default function Customer(props) {
       <div className="CustomerText">
         <h3>{props.title}</h3>
         <input className='search' type="search" placeholder='search'/>
-        <Chatbot/>
+        {/* <Chatbot/> */}
       {/* <CountriesTables/> */}
       </div>
      
