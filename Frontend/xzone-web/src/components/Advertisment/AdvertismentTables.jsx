@@ -1,21 +1,10 @@
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import React, { useEffect, useState } from 'react';
+import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import DataTable from 'react-data-table-component';
 
-{/* <script>
-     var index,table=document.getElementById('table');
-     for(var i=0; i<table.rows.length; i++)
-     {
-        table.rows[i].cells[3].onclick=function()
-        {
-          index=this.parentElement.rowIndex;
-          table._deleteRow(index);
-          console.log(index);
-        }
-     }
-</script> */}
+
 const AdvertismentTables = (props) => {
     const[modal,setmodal]=useState(false);
     const [search,setSearch]= useState([]);
@@ -46,72 +35,8 @@ const AdvertismentTables = (props) => {
         console.log(error);
       }
     };
-    // <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
-    //         <ModalHeader toggle={()=>setmodal(!modal)}>
-    //           Edit Profile
-    //         </ModalHeader>
-    //         <ModalBody> 
-    //             <form action="">
-    //               <Row>
-    //                 <Col lg={12}>
-    //                   <div>
-    //                     <label htmlFor="">
-    //                       Name
-    //                     </label>
-    //                     <input
-    //                     type='text'
-    //                     className='form-control'
-    //                     placeholder='Enter Name'
-    //                     name='name'>
-    //                   </input>
-    //                   </div>
-    //                   <div>
-    //                     <label htmlFor='oldPassword'>
-    //                       Email Address
-    //                     </label>
-    //                     <input
-    //                     type='email'
-    //                     className='form-control'
-    //                     placeholder='Enter Email Address'
-    //                     name='email'>
-    //                     </input>
-    //                   </div>
-    //                   <div>
-    //                     <label htmlFor='oldPassword'>
-    //                       Password
-    //                     </label>
-    //                     <input
-    //                     type='password'
-    //                     className='form-control'
-    //                     placeholder='Enter Password'
-    //                     name='password'>
-    //                     </input>
-    //                   </div>
-    //                   <div>
-    //                     <label htmlFor='oldPassword'>
-    //                       Confirm Password
-    //                     </label>
-    //                     <input
-    //                     type='password'
-    //                     className='form-control'
-    //                     placeholder='Enter Confirm Password'
-    //                     name='confirmpassword'>
-    //                     </input>
-    //                   </div>
-    //                   <div>
-    //                     <label htmlFor="img">Select image:</label>
-    //                     <input type="file" className='form-control' id="img" name="profileimg" accept="image/*"></input>
-    //                   </div>
-                     
-    //                 </Col>
-    //               </Row>
-    //             </form> 
-    //             <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}>Save</button>
-    //             <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
-                
-    //         </ModalBody>
-            
-    // </Modal>
+    
+   
     
     
     const columns=[
@@ -141,7 +66,7 @@ const AdvertismentTables = (props) => {
       },
       {
         name:"Action",
-        cell:(row) =>(<button className='btn btn-primary' onClick={()=>setmodal(true)} >Edit</button>),
+        cell:(row) =>(<button className='btn btn-primary' onClick={()=>setmodal(true)}>Edit</button>),
       },
       {
         // cell:(row) =>(<button className='btn btn-danger' id={row.id} onClick={_delete(row.id)} >Delete</button>),
@@ -160,9 +85,9 @@ const AdvertismentTables = (props) => {
               "token":localStorage.getItem("token")
           }
         };
-      const response = axios.get("http://localhost:5000/api/advertisment/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
+      const response = axios.post("http://localhost:5000/api/advertisements/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
         
-        navigate("/shops");
+        navigate("/advertisement");
         window.location.reload();
       }
       else{
@@ -185,23 +110,91 @@ const AdvertismentTables = (props) => {
 
 
   return (
-    <DataTable 
-        columns={columns}
-        width='200px' 
-        data={filteredCountries} 
-        pagination
-        fixedHeader
-        fixedHeaderScrollHeight='350px'
-        selectableRows
-        selectableRowsHighlight
-        highlightOnHover
-        subHeader
-        subHeaderComponent={
-            <input type="text" placeholder='Search here' className='w-25 form-control' value={search} 
-            onChange={(e)=>setSearch(e.target.value)}/>
-        }
-        subHeaderAlign='left'
-    />
+  <div>
+
+    <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal) }>
+    <ModalHeader toggle={()=>setmodal(!modal)}>
+      Edit Ads
+    </ModalHeader>
+    <ModalBody> 
+        <form  >
+          <Row>
+            <Col lg={12}>
+              <div>
+                <label htmlFor="">
+                  Ads Shop
+                </label>
+                <input
+                type='text'
+                className='form-control'
+                placeholder='Enter Shop Name'
+                name='Ads_shop'>
+              </input>
+              </div>
+              <div>
+                <label htmlFor='oldPassword'>
+                  Ads Category
+                </label>
+                <input
+                type='text'
+                className='form-control'
+                placeholder='Enter Ads Category'
+                name='Ads_cat'>
+                </input>
+              </div>
+              <div>
+                <label htmlFor='oldPassword'>
+                  Instruction
+                </label>
+                <input
+                type='text'
+                className='form-control'
+                placeholder='Enter Instruction'
+                name='Instructions_shop'>
+                </input>
+              </div>
+              <div>
+                <label htmlFor='oldPassword'>
+                  Ads Link
+                </label>
+                <input
+                type='text'
+                className='form-control'
+                placeholder='Enter Ads Link'
+                name='link'>
+                </input>
+              </div>
+            </Col>
+          </Row>
+          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} >Save</button>
+        <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+        </form> 
+  
+        
+    </ModalBody>
+    
+  </Modal>
+
+  <DataTable 
+      columns={columns}
+      width='200px' 
+      data={filteredCountries} 
+      pagination
+      fixedHeader
+      fixedHeaderScrollHeight='350px'
+      selectableRows
+      selectableRowsHighlight
+      highlightOnHover
+      subHeader
+      subHeaderComponent={
+          <input type="text" placeholder='Search here' className='w-25 form-control' value={search} 
+          onChange={(e)=>setSearch(e.target.value)}/>
+      }
+      subHeaderAlign='left'
+  />
+
+  </div>
+
   )
 }
 

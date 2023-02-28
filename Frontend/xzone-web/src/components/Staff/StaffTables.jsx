@@ -148,9 +148,9 @@ const StaffTables = (props) => {
               "token":localStorage.getItem("token")
           }
         };
-      const response = axios.get("http://localhost:5000/api/staff/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
+      const response = axios.post("http://localhost:5000/api/staff/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
         
-        navigate("/shops");
+        navigate("/staff");
         window.location.reload();
       }
       else{
@@ -173,23 +173,87 @@ const StaffTables = (props) => {
 
 
   return (
-    <DataTable 
-        columns={columns}
-        width='200px' 
-        data={filteredCountries} 
-        pagination
-        fixedHeader
-        fixedHeaderScrollHeight='350px'
-        selectableRows
-        selectableRowsHighlight
-        highlightOnHover
-        subHeader
-        subHeaderComponent={
-            <input type="text" placeholder='Search here' className='w-25 form-control' value={search} 
-            onChange={(e)=>setSearch(e.target.value)}/>
-        }
-        subHeaderAlign='left'
-    />
+    <div>
+        <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal) }>
+    <ModalHeader toggle={()=>setmodal(!modal)}>
+      Edit Staff
+    </ModalHeader>
+    <ModalBody> 
+        <form  >
+          <Row>
+            <Col lg={12}>
+              <div>
+                <label htmlFor="">
+                  Ads Shop
+                </label>
+                <input
+                type='text'
+                className='form-control'
+                placeholder='Enter Shop Name'
+                name='Ads_shop'>
+              </input>
+              </div>
+              <div>
+                <label htmlFor='oldPassword'>
+                  Ads Category
+                </label>
+                <input
+                type='text'
+                className='form-control'
+                placeholder='Enter Ads Category'
+                name='Ads_cat'>
+                </input>
+              </div>
+              <div>
+                <label htmlFor='oldPassword'>
+                  Instruction
+                </label>
+                <input
+                type='text'
+                className='form-control'
+                placeholder='Enter Instruction'
+                name='Instructions_shop'>
+                </input>
+              </div>
+              <div>
+                <label htmlFor='oldPassword'>
+                  Ads Link
+                </label>
+                <input
+                type='text'
+                className='form-control'
+                placeholder='Enter Ads Link'
+                name='link'>
+                </input>
+              </div>
+            </Col>
+          </Row>
+          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} >Save</button>
+        <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+        </form> 
+  
+        
+    </ModalBody>
+    
+  </Modal>
+      <DataTable 
+          columns={columns}
+          width='200px' 
+          data={filteredCountries} 
+          pagination
+          fixedHeader
+          fixedHeaderScrollHeight='350px'
+          selectableRows
+          selectableRowsHighlight
+          highlightOnHover
+          subHeader
+          subHeaderComponent={
+              <input type="text" placeholder='Search here' className='w-25 form-control' value={search} 
+              onChange={(e)=>setSearch(e.target.value)}/>
+          }
+          subHeaderAlign='left'
+      />
+    </div>
   )
 }
 

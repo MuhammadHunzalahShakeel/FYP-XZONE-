@@ -1,41 +1,31 @@
 import React,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
+// import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
-import Button from '@mui/material/Button';
-import Table from "../Table/Table.jsx";
 import AdvertismentTables from './AdvertismentTables.jsx';
 import './Advertisment.css'
-import  { Component } from 'react';
-import { Link } from "react-router-dom";
-import PropTypes  from 'prop-types'
-import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
 import { useEffect } from 'react';
 import axios from "axios";
 
+// function App(){
+//   const notify = () => toast("Wow so easy!");
 
+//   return (
+//     <div>
+//       <button onClick={notify}>Notify!</button>
+//       <ToastContainer />
+//     </div>
+//   );
+// }
 export default function Advertisment(props) {
   const postURL = "http://localhost:5000/api/advertisements/admin";
   const getURL = "http://localhost:5000/api/advertisements/admin";
   const [apidata,setapidata]=useState([]);
   const [storedata, storeapidata] = useState({shopname: '',cattegory: '', instructions: '' ,link:''})
   const[modal,setmodal]=useState(false)
-  const[toggle,settoggle]=useState(false)
-  const [data, setData] = useState([{
-    "no":1,
-    "Ad_no":"Ad_001",
-    "Ads_shop":"Khaadi",
-    "Ads_cat":"Women",
-    "Instructions_shop":"No Instruction",
-     "Url":"www.image2.com"
-},{
-  "no":2,
-  "Ad_no":"Ad_002",
-  "Ads_shop":"J.",
-  "Ads_cat":"Men",
-  "Instructions_shop":"No Instruction",
-   "Url":"www.image3.com"
-}])
+  
   useEffect(()=>{
     let axiosConfig = {
       headers: {
