@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 const EntertainmentTables = (props) => {
     const[modal,setmodal]=useState(false);
+    const[edit,setedit]=useState({Name: '',Email:'',Category:'',Description:'',Website:''});
     const [search,setSearch]= useState([]);
     const [countries,setCountries]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
@@ -29,72 +30,7 @@ const EntertainmentTables = (props) => {
         console.log(error);
       }
     };
-    // <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
-    //         <ModalHeader toggle={()=>setmodal(!modal)}>
-    //           Edit Profile
-    //         </ModalHeader>
-    //         <ModalBody> 
-    //             <form action="">
-    //               <Row>
-    //                 <Col lg={12}>
-    //                   <div>
-    //                     <label htmlFor="">
-    //                       Name
-    //                     </label>
-    //                     <input
-    //                     type='text'
-    //                     className='form-control'
-    //                     placeholder='Enter Name'
-    //                     name='name'>
-    //                   </input>
-    //                   </div>
-    //                   <div>
-    //                     <label htmlFor='oldPassword'>
-    //                       Email Address
-    //                     </label>
-    //                     <input
-    //                     type='email'
-    //                     className='form-control'
-    //                     placeholder='Enter Email Address'
-    //                     name='email'>
-    //                     </input>
-    //                   </div>
-    //                   <div>
-    //                     <label htmlFor='oldPassword'>
-    //                       Password
-    //                     </label>
-    //                     <input
-    //                     type='password'
-    //                     className='form-control'
-    //                     placeholder='Enter Password'
-    //                     name='password'>
-    //                     </input>
-    //                   </div>
-    //                   <div>
-    //                     <label htmlFor='oldPassword'>
-    //                       Confirm Password
-    //                     </label>
-    //                     <input
-    //                     type='password'
-    //                     className='form-control'
-    //                     placeholder='Enter Confirm Password'
-    //                     name='confirmpassword'>
-    //                     </input>
-    //                   </div>
-    //                   <div>
-    //                     <label htmlFor="img">Select image:</label>
-    //                     <input type="file" className='form-control' id="img" name="profileimg" accept="image/*"></input>
-    //                   </div>
-                     
-    //                 </Col>
-    //               </Row>
-    //             </form> 
-    //             <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}>Save</button>
-    //             <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
-                
-    //         </ModalBody>
-            
-    // </Modal>
+    
     const columns=[
       {
         name:"No",
@@ -126,13 +62,21 @@ const EntertainmentTables = (props) => {
       },
       {
         name:"Action",
-        cell:(row) =>(<button className='btn btn-primary' onClick={()=>setmodal(true)} >Edit</button>),
+        cell:(row) =>(<button className='btn btn-primary' onClick={() => handleEdit(row)} >Edit</button>),
       },
       {
         cell:(row) =>(<button className='btn btn-danger' onClick={() => handleDelete(row.id)} >Delete</button>),
       }
     ]
     const navigate = useNavigate();
+    const handleEdit = (row) =>{
+      setedit(row);
+      console.log(row)
+      // return(<editAdvertisment row></editAdvertisment>)
+      
+      // console.log(edit);
+      setmodal(true);
+    }
     const handleDelete = (_id) => {
       // setData(data.filter((row) => row.id !== id));
       console.log(_id);
@@ -170,68 +114,89 @@ const EntertainmentTables = (props) => {
 
   return (
     <div>
-    <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal) }>
-    <ModalHeader toggle={()=>setmodal(!modal)}>
-      Edit Brand
-    </ModalHeader>
-    <ModalBody> 
-        <form  >
-          <Row>
-            <Col lg={12}>
-              <div>
-                <label htmlFor="">
-                  Ads Shop
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Shop Name'
-                name='Ads_shop'>
-              </input>
-              </div>
-              <div>
-                <label htmlFor='oldPassword'>
-                  Ads Category
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Ads Category'
-                name='Ads_cat'>
-                </input>
-              </div>
-              <div>
-                <label htmlFor='oldPassword'>
-                  Instruction
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Instruction'
-                name='Instructions_shop'>
-                </input>
-              </div>
-              <div>
-                <label htmlFor='oldPassword'>
-                  Ads Link
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Ads Link'
-                name='link'>
-                </input>
-              </div>
-            </Col>
-          </Row>
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} >Save</button>
-        <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
-        </form> 
-  
-        
-    </ModalBody>
-    
-  </Modal>
+     <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
+            <ModalHeader toggle={()=>setmodal(!modal)}>
+              Edit Brand
+            </ModalHeader>
+            <ModalBody> 
+                <form >
+                  <Row>
+                    <Col lg={12}>
+                     
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Brand Name
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Name'
+                        value={edit.Name}
+                        name='brandName'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Brand Email
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Email'
+                        value={edit.Email}
+                        name='brandEmail'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Category
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Category'
+                        value={edit.Category}
+                        name='category'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Description
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Description'
+                        value={edit.Description}
+                        name='description'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Website
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Website'
+                        value={edit.Website}
+                        name='website'>
+                        </input>
+                      </div>
+                    </Col>
+                  </Row>
+                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}  type="submit">Save</button>
+                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                </form> 
+                
+            </ModalBody>
+            
+          </Modal>
       <DataTable 
           columns={columns}
           width='200px' 

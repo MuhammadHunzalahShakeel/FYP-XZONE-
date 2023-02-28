@@ -17,55 +17,7 @@ export default function Staff(props) {
   const [storedata, storeapidata] = useState({fullName: '',Email:'',gender:'',age:'',salary:'',designation:''})
   const[modal,setmodal]=useState(false)
   const[toggle,settoggle]=useState(false)
-  const [data, setData] = useState([{
-    "no":1,
-    "Staff_no":"Xstaff-101",
-    "Staff_Name":"Asim",
-    "Staff_Gender":"Men",
-    "Staff_Age":"30",
-    "Salary":"20k",
-    "Joining_Data":"12-12-21"
-},{
-  "no":2,
-    "Staff_no":"Xstaff-102",
-    "Staff_Name":"Saim",
-    "Staff_Gender":"Men",
-    "Staff_Age":"30",
-    "Salary":"20k",
-    "Joining_Data":"12-02-21"
-},{
-  "no":3,
-    "Staff_no":"Xstaff-103",
-    "Staff_Name":"Saim",
-    "Staff_Gender":"Men",
-    "Staff_Age":"30",
-    "Salary":"20k",
-    "Joining_Data":"12-02-21"
-},{
-  "no":4,
-    "Staff_no":"Xstaff-104",
-    "Staff_Name":"Sohail",
-    "Staff_Gender":"Men",
-    "Staff_Age":"30",
-    "Salary":"20k",
-    "Joining_Data":"12-02-21"
-},{
-  "no":5,
-    "Staff_no":"Xstaff-105",
-    "Staff_Name":"Omaima",
-    "Staff_Gender":"Women",
-    "Staff_Age":"30",
-    "Salary":"25k",
-    "Joining_Data":"12-02-21"
-},{
-  "no":6,
-    "Staff_no":"Xstaff-106",
-    "Staff_Name":"Junaid",
-    "Staff_Gender":"Men",
-    "Staff_Age":"30",
-    "Salary":"20k",
-    "Joining_Data":"12-02-21"
-}])
+ 
 useEffect(()=>{
   let axiosConfig = {
     headers: {

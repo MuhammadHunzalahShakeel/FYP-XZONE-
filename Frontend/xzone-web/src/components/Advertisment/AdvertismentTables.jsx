@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import DataTable from 'react-data-table-component';
 
-
 const AdvertismentTables = (props) => {
     const[modal,setmodal]=useState(false);
+    const[edit,setedit]=useState({shopname: '',cattegory: '', instructions: '' ,link:''});
     const [search,setSearch]= useState([]);
     const [countries,setCountries]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
@@ -66,14 +66,23 @@ const AdvertismentTables = (props) => {
       },
       {
         name:"Action",
-        cell:(row) =>(<button className='btn btn-primary' onClick={()=>setmodal(true)}>Edit</button>),
+        cell:(row) =>(<button className='btn btn-primary' onClick={() => handleEdit(row)}>Edit</button>),
       },
       {
         // cell:(row) =>(<button className='btn btn-danger' id={row.id} onClick={_delete(row.id)} >Delete</button>),
         cell:(row) =>(<button className='btn btn-danger' onClick={() => handleDelete(row.id)} >Delete</button>),
       }
     ]
+
     const navigate = useNavigate();
+    const handleEdit = (row) =>{
+      setedit(row);
+      console.log(row)
+      // return(<editAdvertisment row></editAdvertisment>)
+      
+      // console.log(edit);
+      setmodal(true);
+    }
     const handleDelete = (_id) => {
       // setData(data.filter((row) => row.id !== id));
       console.log(_id);
@@ -127,7 +136,8 @@ const AdvertismentTables = (props) => {
                 <input
                 type='text'
                 className='form-control'
-                placeholder='Enter Shop Name'
+                placeholder='hello'
+                value={edit.advertisedBy}
                 name='Ads_shop'>
               </input>
               </div>
@@ -139,6 +149,7 @@ const AdvertismentTables = (props) => {
                 type='text'
                 className='form-control'
                 placeholder='Enter Ads Category'
+                value={edit.cattegory}
                 name='Ads_cat'>
                 </input>
               </div>
@@ -149,6 +160,7 @@ const AdvertismentTables = (props) => {
                 <input
                 type='text'
                 className='form-control'
+                value={edit.instructions}
                 placeholder='Enter Instruction'
                 name='Instructions_shop'>
                 </input>
@@ -160,6 +172,7 @@ const AdvertismentTables = (props) => {
                 <input
                 type='text'
                 className='form-control'
+                value={edit.link}
                 placeholder='Enter Ads Link'
                 name='link'>
                 </input>

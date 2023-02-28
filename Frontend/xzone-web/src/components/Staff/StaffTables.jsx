@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 const StaffTables = (props) => {
     const[modal,setmodal]=useState(false);
+    const[edit,setedit]=useState({fullName: '',Email:'',gender:'',age:'',salary:'',designation:''});
     const [search,setSearch]= useState([]);
     const [countries,setCountries]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
@@ -130,13 +131,21 @@ const StaffTables = (props) => {
       },
       {
         name:"Action",
-        cell:(row) =>(<button className='btn btn-primary' onClick={()=>setmodal(true)} >Edit</button>),
+        cell:(row) =>(<button className='btn btn-primary'  onClick={() => handleEdit(row)} >Edit</button>),
       },
       {
         cell:(row) =>(<button className='btn btn-danger' onClick={() => handleDelete(row.id)} >Delete</button>),
       }
     ]
     const navigate = useNavigate();
+    const handleEdit = (row) =>{
+      setedit(row);
+      console.log(row)
+      // return(<editAdvertisment row></editAdvertisment>)
+      
+      // console.log(edit);
+      setmodal(true);
+    }
     const handleDelete = (_id) => {
       // setData(data.filter((row) => row.id !== id));
       console.log(_id);
@@ -174,68 +183,102 @@ const StaffTables = (props) => {
 
   return (
     <div>
-        <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal) }>
-    <ModalHeader toggle={()=>setmodal(!modal)}>
-      Edit Staff
-    </ModalHeader>
-    <ModalBody> 
-        <form  >
-          <Row>
-            <Col lg={12}>
-              <div>
-                <label htmlFor="">
-                  Ads Shop
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Shop Name'
-                name='Ads_shop'>
-              </input>
-              </div>
-              <div>
-                <label htmlFor='oldPassword'>
-                  Ads Category
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Ads Category'
-                name='Ads_cat'>
-                </input>
-              </div>
-              <div>
-                <label htmlFor='oldPassword'>
-                  Instruction
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Instruction'
-                name='Instructions_shop'>
-                </input>
-              </div>
-              <div>
-                <label htmlFor='oldPassword'>
-                  Ads Link
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Ads Link'
-                name='link'>
-                </input>
-              </div>
-            </Col>
-          </Row>
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} >Save</button>
-        <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
-        </form> 
-  
-        
-    </ModalBody>
-    
-  </Modal>
+       <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
+            <ModalHeader toggle={()=>setmodal(!modal)}>
+              Add Staff
+            </ModalHeader>
+            <ModalBody> 
+                <form >
+                  <Row>
+                    <Col lg={12}>
+                      
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Staff Name
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Staff Name'
+                        value={edit.fullName}
+                        name='staffName'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Staff Email
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Staff Email'
+                        value={edit.Email}
+                        name='staffEmail'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Staff Gender
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Staff Gender'
+                        value={edit.gender}
+                        name='staffGender'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Staff Age
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Staff Age'
+                        value={edit.age}
+                        name='staffAge'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Salary
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Salary'
+                        value={edit.salary}
+                        name='salary'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Designation
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange}
+                        className='form-control'
+                        placeholder='Enter Designation'
+                        value={edit.designation}
+                        name='designation'>
+                        </input>
+                      </div>
+                    </Col>
+                  </Row>
+                  <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
+                  <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                </form> 
+                
+            </ModalBody>
+            
+          </Modal>
       <DataTable 
           columns={columns}
           width='200px' 

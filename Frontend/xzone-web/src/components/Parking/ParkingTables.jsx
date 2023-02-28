@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 const ParkingTables = (props) => {
     const[modal,setmodal]=useState(false);
+    const[edit,setedit]=useState({carNumber: '',fees:'',status:''});
     const [search,setSearch]= useState([]);
     const [countries,setCountries]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
@@ -122,13 +123,21 @@ const ParkingTables = (props) => {
       },
       {
         name:"Action",
-        cell:(row) =>(<button className='btn btn-primary' onClick={()=>setmodal(true)} >Edit</button>),
+        cell:(row) =>(<button className='btn btn-primary' onClick={() => handleEdit(row)} >Edit</button>),
       },
       {
         cell:(row) =>(<button className='btn btn-danger' onClick={() => handleDelete(row.id)}>Delete</button>),
       }
     ]
     const navigate = useNavigate();
+    const handleEdit = (row) =>{
+      setedit(row);
+      console.log(row)
+      // return(<editAdvertisment row></editAdvertisment>)
+      
+      // console.log(edit);
+      setmodal(true);
+    }
     const handleDelete = (_id) => {
       // setData(data.filter((row) => row.id !== id));
       console.log(_id);
@@ -166,68 +175,60 @@ const ParkingTables = (props) => {
 
   return (
     <div>
-        <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal) }>
-    <ModalHeader toggle={()=>setmodal(!modal)}>
-      Edit Parking
-    </ModalHeader>
-    <ModalBody> 
-        <form  >
-          <Row>
-            <Col lg={12}>
-              <div>
-                <label htmlFor="">
-                  Ads Shop
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Shop Name'
-                name='Ads_shop'>
-              </input>
-              </div>
-              <div>
-                <label htmlFor='oldPassword'>
-                  Ads Category
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Ads Category'
-                name='Ads_cat'>
-                </input>
-              </div>
-              <div>
-                <label htmlFor='oldPassword'>
-                  Instruction
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Instruction'
-                name='Instructions_shop'>
-                </input>
-              </div>
-              <div>
-                <label htmlFor='oldPassword'>
-                  Ads Link
-                </label>
-                <input
-                type='text'
-                className='form-control'
-                placeholder='Enter Ads Link'
-                name='link'>
-                </input>
-              </div>
-            </Col>
-          </Row>
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} >Save</button>
-        <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
-        </form> 
-  
-        
-    </ModalBody>
-    
-  </Modal>
+       <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
+            <ModalHeader toggle={()=>setmodal(!modal)}>
+              Add Parking
+            </ModalHeader>
+            <ModalBody> 
+                <form>
+                  <Row>
+                    <Col lg={12}>
+                      <div>
+                        <label htmlFor="">
+                          Car Number
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange} 
+                        className='form-control'
+                        placeholder='Enter Car Number'
+                        value={edit.carNumber}
+                        name='carNumber'>
+                      </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Parking Fee
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange} 
+                        className='form-control'
+                        placeholder='Enter Parking Fee'
+                        value={edit.fees}
+                        name='parkingfee'>
+                        </input>
+                      </div>
+                      <div>
+                        <label htmlFor='oldPassword'>
+                          Status
+                        </label>
+                        <input
+                        type='text'
+                        // onChange={handleChange} 
+                        className='form-control'
+                        placeholder='Enter Status'
+                        value={edit.status}
+                        name='status'>
+                        </input>
+                      </div>
+                    </Col>
+                  </Row>
+                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
+                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                </form> 
+            </ModalBody>
+          </Modal>
       <DataTable 
           columns={columns}
           width='200px' 
