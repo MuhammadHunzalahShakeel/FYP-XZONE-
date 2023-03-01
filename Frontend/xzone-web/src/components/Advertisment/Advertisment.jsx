@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import AdvertismentTables from './AdvertismentTables.jsx';
 import './Advertisment.css'
@@ -9,23 +9,20 @@ import Header from '../Header/Header.jsx';
 import { useEffect } from 'react';
 import axios from "axios";
 
-// function App(){
-//   const notify = () => toast("Wow so easy!");
 
-//   return (
-//     <div>
-//       <button onClick={notify}>Notify!</button>
-//       <ToastContainer />
-//     </div>
-//   );
-// }
 export default function Advertisment(props) {
   const postURL = "http://localhost:5000/api/advertisements/admin";
   const getURL = "http://localhost:5000/api/advertisements/admin";
   const [apidata,setapidata]=useState([]);
   const [storedata, storeapidata] = useState({shopname: '',cattegory: '', instructions: '' ,link:''})
   const[modal,setmodal]=useState(false)
-  
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        navigate('/login')
+    }
+    }, [])
   useEffect(()=>{
     let axiosConfig = {
       headers: {
@@ -40,41 +37,9 @@ export default function Advertisment(props) {
       setapidata(response.data)
     })
   },[]);
-//   const handleSubmit = (e) => {
-//     const formData = new FormData(e.currentTarget)
-//     e.preventDefault();
-//   const temp =data[data.length-1].no
-//  let results = {'no':temp+1}
 
-
-
-//     for( let [key, value] of formData.entries()){
-
-//   //  results.push({
-//   //       key: key,
-//   //       value:value
-//   //     })
-//   results[key]=value
-//     }
-  
-//   //  results.no=data[-1].no+1   
-//   let temp2= data
-//   temp2.push(results)
-
-//   setData(temp2);
-//   console.log(temp2)
-//   console.log(data)
-//   settoggle(true)
-//   setmodal(!modal)
-//   }
 const navigate = useNavigate();
   const handleChange = (e) => {
-    // e.target.name === 'Signup-email' ? setSignupData({ ...SignupData, email: e.target.value }) : ; 
-    // e.target.name === 'Signup-password' ? setSignupData({ ...SignupData, password: e.target.value })
-    // e.target.name === 'Signup-username' ? setSignupData({ ...SignupData, username: e.target.value }) :
-    // e.target.name === 'Signup-mallname' ? setSignupData({ ...SignupData, mallname: e.target.value })
-
-
     if ( e.target.name === 'Ads_shop'){
       storeapidata({ ...storedata, shopname: e.target.value }) ;
     }
@@ -109,6 +74,7 @@ const handleSubmit = async (e) => {
     .then((response) => {if(response.status===200){
       console.log(response.data)
       navigate("/advertisment");
+      toast.success("New Advertisment Added!!",{theme: "light"});
         window.location.reload();
     }
     else{
@@ -190,7 +156,7 @@ const handleSubmit = async (e) => {
                     </Col>
                   </Row>
                   <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
-                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}} onClick={()=>setmodal(false)}>Cancel</button>
                 </form> 
           
                 
@@ -198,16 +164,12 @@ const handleSubmit = async (e) => {
             
           </Modal>
           
-          {/* <input className='search' type="search" placeholder='search'/> */}
           <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Ads</button>
           <div className="space"></div>
         </div>
+        <ToastContainer />
         <AdvertismentTables data={apidata}/>
       </div>
-      {/* <div className='Tablebackground'></div> */}
-      {/* <div  className='ui'>
-            <Table theadData={theadData} tbodyData={tbodyData} />
-      </div> */}
 
     </div>
     

@@ -1,15 +1,81 @@
-import React,{useState} from 'react'
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
 import ProfileImage from "../../assets/ProfileImage.svg"
 import './Profile.css'
-import  { Component } from 'react';
-import { Link } from "react-router-dom";
-import PropTypes  from 'prop-types'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 export default function Profile(props) {
-    const[modal,setmodal]=useState(false);
+  const[modal,setmodal]=useState(false);
+  const [profiledata,setprofiledata]=useState({id:'',Name:'',Email:''});
+  const getURL = "http://localhost:5000/api/profile";
+  const[edit,setedit]=useState({Name: '',Email: '', Password:''});
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        navigate('/login')
+}
+const temp = JSON.parse(localStorage.getItem('admin'))
+// setprofiledata({...profiledata,Name:temp.Name})
+// setprofiledata({...profiledata,Email:temp.Email})
+// setprofiledata({...profiledata,Password:temp.Password})
+setprofiledata(temp)
+console.log(profiledata)
+},[])
+const navigate = useNavigate();
+const handleChange = (e) => { 
+  console.log(e.target.name,e.target.value)
+  if ( e.target.name === 'Name'){
+    setedit({ ...edit, Name: e.target.value }) ;
+  }
+  else if ( e.target.name === 'Email'){
+    setedit({ ...edit, Email: e.target.value }) ;
+  }
+  else if ( e.target.name === 'Password'){
+    setedit({ ...edit, Password: e.target.value }) ;
+  }
+  console.log(edit)
+  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // await login({ variables: { email: loginData.email, password: loginData.password } });
+      console.log(edit)
+      
+      // console.log(error, '123123')
+      // console.log(loading)
+      let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+            "token":localStorage.getItem("token")
+        }
+      };
+      axios
+      .post("http://localhost:5000/api/profile/edit", edit,axiosConfig)
+      .then((response) => {if(response.status===200){
+        console.log(response.data)
+        navigate("/advertisment");
+          window.location.reload();
+      }
+      else{
+        console.log(response)
+      }
+  });
+  }
+      
+    catch (error) {
+      console.log(error.message)
+  }
+  
+  }
+  
+
   return (
     <div>
       <Header/>
@@ -22,7 +88,7 @@ export default function Profile(props) {
               Edit Profile
             </ModalHeader>
             <ModalBody> 
-                <form action="">
+                <form  onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                       <div>
@@ -32,8 +98,9 @@ export default function Profile(props) {
                         <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter Name'
-                        name='name'>
+                        placeholder={edit.Name}
+                        onChange={handleChange} 
+                        name='Name'>
                       </input>
                       </div>
                       <div>
@@ -43,8 +110,9 @@ export default function Profile(props) {
                         <input
                         type='email'
                         className='form-control'
-                        placeholder='Enter Email Address'
-                        name='email'>
+                        placeholder={edit.email}
+                        onChange={handleChange} 
+                        name='Email'>
                         </input>
                       </div>
                       <div>
@@ -54,8 +122,9 @@ export default function Profile(props) {
                         <input
                         type='password'
                         className='form-control'
-                        placeholder='Enter Password'
-                        name='password'>
+                        placeholder={edit.password}
+                        onChange={handleChange} 
+                        name='Password'>
                         </input>
                       </div>
                       <div>
@@ -65,19 +134,25 @@ export default function Profile(props) {
                         <input
                         type='password'
                         className='form-control'
-                        placeholder='Enter Confirm Password'
+                        placeholder={edit.confirm}
+                        onChange={handleChange} 
                         name='confirmpassword'>
                         </input>
                       </div>
                       <div>
                         <label htmlFor="img">Select image:</label>
-                        <input type="file" className='form-control' id="img" name="profileimg" accept="image/*"></input>
+                        <input type="file" className='form-control' id="img" name="profileimg" accept="image/*"
+                        placeholder={edit.image}
+                        onChange={handleChange} 
+                        > 
+                        </input>
+                        
                       </div>
                      
                     </Col>
                   </Row>
                 </form> 
-                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}>Save</button>
+                <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
                 <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
                 
             </ModalBody>
@@ -93,15 +168,15 @@ export default function Profile(props) {
                     <div class="card">
                     <div className="inline" >
                         <span className='Label'>Id:</span>
-                        <span>Ad-101</span>
+                        <span>{profiledata.id}</span>
+                    </div>
+                    <div className="inline" >
+                        <span className='Label'>Name:</span>
+                        <span>{profiledata.name}</span>
                     </div>
                     <div className="inline">
                         <span className='Label'>Email Address:</span>
-                        <span>admin@gmail.com</span>
-                    </div>
-                    <div className="inline">
-                        <span className='Label'>Name:</span>
-                        <span>Admin</span>
+                        <span>{profiledata.Email}</span>
                     </div>
                     <div className="inline">
                         <span className='Label'>Password:</span>

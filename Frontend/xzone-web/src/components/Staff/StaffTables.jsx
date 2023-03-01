@@ -10,6 +10,12 @@ const StaffTables = (props) => {
     const [countries,setCountries]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
 
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+          navigate('/login')
+      }
+    }, [])
     const getCountries = async ()=>{
       try{
         let axiosConfig = {
@@ -138,12 +144,32 @@ const StaffTables = (props) => {
       }
     ]
     const navigate = useNavigate();
+    const handleChange = (e) => {
+      if ( e.target.name === 'staffName'){
+        setedit({ ...edit, fullName: e.target.value }) ;
+      }
+      else if ( e.target.name === 'staffEmail'){
+        setedit({ ...edit,Email: e.target.value }) ;
+      }
+      else if ( e.target.name === 'staffGender'){
+        setedit({ ...edit, gender: e.target.value }) ;
+      }
+      else if ( e.target.name === 'staffAge'){
+        setedit({ ...edit, age: e.target.value }) ;
+      }
+      else if ( e.target.name === 'salary'){
+        setedit({ ...edit, salary: e.target.value }) ;
+      }
+      else if ( e.target.name === 'designation'){
+        setedit({ ...edit, designation: e.target.value }) ;
+      }
+      console.log(edit)
+    
+    }
+    
     const handleEdit = (row) =>{
       setedit(row);
       console.log(row)
-      // return(<editAdvertisment row></editAdvertisment>)
-      
-      // console.log(edit);
       setmodal(true);
     }
     const handleDelete = (_id) => {
@@ -175,12 +201,44 @@ const StaffTables = (props) => {
     
     useEffect(()=>{
         const result = countries.filter(country=>{
-            return country.name.toLowerCase().match(search.toLowerCase());
+            return country.fullName.toLowerCase().match(search.toLowerCase());
         })
         setFilteredCountries(result);
     },[search]);
 
-
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        // await login({ variables: { email: loginData.email, password: loginData.password } });
+        console.log(edit)
+        
+        // console.log(error, '123123')
+        // console.log(loading)
+        let axiosConfig = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              "Access-Control-Allow-Origin": "*",
+              "token":localStorage.getItem("token")
+          }
+        };
+        axios
+        .post("http://localhost:5000/api/staff/edit", edit,axiosConfig)
+        .then((response) => {if(response.status===200){
+          console.log(response.data)
+          navigate("/staff");
+            window.location.reload();
+        }
+        else{
+          console.log(response)
+        }
+    });
+    }
+        
+      catch (error) {
+        console.log(error.message)
+    }
+    
+    }
   return (
     <div>
        <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
@@ -188,7 +246,7 @@ const StaffTables = (props) => {
               Add Staff
             </ModalHeader>
             <ModalBody> 
-                <form >
+                <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                       
@@ -198,10 +256,9 @@ const StaffTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Staff Name'
-                        value={edit.fullName}
+                        placeholder={edit.fullName}
                         name='staffName'>
                         </input>
                       </div>
@@ -211,10 +268,9 @@ const StaffTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Staff Email'
-                        value={edit.Email}
+                        placeholder={edit.Email}
                         name='staffEmail'>
                         </input>
                       </div>
@@ -224,10 +280,9 @@ const StaffTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Staff Gender'
-                        value={edit.gender}
+                        placeholder={edit.gender}
                         name='staffGender'>
                         </input>
                       </div>
@@ -237,10 +292,9 @@ const StaffTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Staff Age'
-                        value={edit.age}
+                        placeholder={edit.age}
                         name='staffAge'>
                         </input>
                       </div>
@@ -250,10 +304,9 @@ const StaffTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Salary'
-                        value={edit.salary}
+                        placeholder={edit.salary}
                         name='salary'>
                         </input>
                       </div>
@@ -263,17 +316,16 @@ const StaffTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Designation'
-                        value={edit.designation}
+                        placeholder={edit.designation}
                         name='designation'>
                         </input>
                       </div>
                     </Col>
                   </Row>
                   <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
-                  <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                  <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}} onClick={()=>setmodal(false)}>Cancel</button>
                 </form> 
                 
             </ModalBody>

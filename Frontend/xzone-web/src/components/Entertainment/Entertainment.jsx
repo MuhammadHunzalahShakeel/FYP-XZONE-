@@ -1,12 +1,10 @@
 import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import './Entertainment.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-import Button from '@mui/material/Button';
-import Table from "../Table/Table.jsx";
 import EntertainmentTables from './EntertainmentTables.jsx';
-import { Link } from "react-router-dom";
-import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
 import { useEffect } from 'react';
 import axios from "axios";
@@ -17,22 +15,7 @@ export default function  Entertainment(props) {
   const [apidata,setapidata]=useState([]);
   const [storedata, storeapidata] = useState({Name: '',Email:'',Category:'',Description:'',Website:''})
     const[modal,setmodal]=useState(false)
-    const[toggle,settoggle]=useState(false)
-  const [data, setData] = useState([{
-    "no":1,
-    "Food_no":"FC-001",
-    "Brand_Name":"KFC",
-    "Category":"Fast Food",
-    "Description":"KFC is a Fast Food Shop",
-    "Website":"www.kfc.com"
-},{
-  "no":2,
-    "Food_no":"FC-002",
-    "Brand_Name":"OPTP",
-    "Category":"Fast Food",
-    "Description":"OPTP is a Fast Food Shop",
-    "Website":"www.optp.com"
-}])
+    
 useEffect(()=>{
   let axiosConfig = {
     headers: {
@@ -65,28 +48,7 @@ const navigate = useNavigate();
     }
 
 }
-// const handleSubmit = (e) => {
-//   const formData = new FormData(e.currentTarget)
-//   e.preventDefault();
-// const temp =data[data.length-1].no
-// let results = {'no':temp+1}
 
-
-
-//   for( let [key, value] of formData.entries()){
-
-// results[key]=value
-//   }
-
-// let temp2= data
-// temp2.push(results)
-
-// setData(temp2);
-// console.log(temp2)
-// console.log(data)
-// settoggle(true)
-// setmodal(!modal)
-// }
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
@@ -107,6 +69,7 @@ const handleSubmit = async (e) => {
     .then((response) => {if(response.status===200){
       console.log(response.data)
       navigate("/entertainment");
+      toast.success("New FoodCourt Added!!",{theme: "light"});
         window.location.reload();
     }
     else{
@@ -199,7 +162,7 @@ const handleSubmit = async (e) => {
                     </Col>
                   </Row>
                 <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}  type="submit">Save</button>
-                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}} onClick={()=>setmodal(false)}>Cancel</button>
                 </form> 
                 
             </ModalBody>
@@ -208,12 +171,11 @@ const handleSubmit = async (e) => {
           {/* <input className='search' type="search" placeholder='search'/> */}
           <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Brand</button>
           <div className="space"></div>
-        </div>
+        </div>        
+        <ToastContainer />
         <EntertainmentTables data={apidata}/>
       </div>
-      {/* <div  className='ui'>
-            <Table theadData={theadData} tbodyData={tbodyData} />
-      </div> */}
+      
     </div>
   )
 }

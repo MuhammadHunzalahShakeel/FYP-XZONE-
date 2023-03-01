@@ -1,11 +1,10 @@
 import React,{useState} from 'react'
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import './Staff.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import StaffTables from './StaffTables.jsx';
-import Table from "../Table/Table.jsx";
-import { Link } from "react-router-dom";
-import Navmenu from '../Navmenu/Navmenu.jsx';
 import Header from '../Header/Header.jsx';
 import { useEffect } from 'react';
 import axios from "axios";
@@ -17,7 +16,13 @@ export default function Staff(props) {
   const [storedata, storeapidata] = useState({fullName: '',Email:'',gender:'',age:'',salary:'',designation:''})
   const[modal,setmodal]=useState(false)
   const[toggle,settoggle]=useState(false)
- 
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        navigate('/login')
+    }
+    }, [])
 useEffect(()=>{
   let axiosConfig = {
     headers: {
@@ -54,42 +59,10 @@ const handleChange = (e) => {
 
 }
 
-
-// const handleSubmit = (e) => {
-//   const formData = new FormData(e.currentTarget)
-//   e.preventDefault();
-// const temp =data[data.length-1].no
-// let results = {'no':temp+1}
-
-
-
-//   for( let [key, value] of formData.entries()){
-
-// //  results.push({
-// //       key: key,
-// //       value:value
-// //     })
-// results[key]=value
-//   }
-
-// //  results.no=data[-1].no+1   
-// let temp2= data
-// temp2.push(results)
-
-// setData(temp2);
-// console.log(temp2)
-// console.log(data)
-// settoggle(true)
-// setmodal(!modal)
-// }
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    // await login({ variables: { email: loginData.email, password: loginData.password } });
     console.log(storedata)
-    
-    // console.log(error, '123123')
-    // console.log(loading)
     let axiosConfig = {
       headers: {
           'Content-Type': 'application/json;charset=UTF-8',
@@ -102,6 +75,7 @@ const handleSubmit = async (e) => {
     .then((response) => {if(response.status===200){
       console.log(response.data)
       navigate("/staff");
+      toast.success("New Staff Added!!",{theme: "light"});
         window.location.reload();
     }
     else{
@@ -206,21 +180,17 @@ const handleSubmit = async (e) => {
                     </Col>
                   </Row>
                   <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
-                  <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                  <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}} onClick={()=>setmodal(false)}>Cancel</button>
                 </form> 
-                
             </ModalBody>
-            
           </Modal>
-        {/* <input className='search' type="search" placeholder='search'/> */}
         <button className='btn mt-0' style={{backgroundColor:"#0F6AAB",color:"white"}} onClick={()=>setmodal(true)}>Add Staff</button>
         <div className="space"></div>
         </div>
+        <ToastContainer />
         <StaffTables data={apidata}/>
       </div>
-      {/* <div  className='ui'>
-            <Table theadData={theadData} tbodyData={tbodyData} />
-      </div> */}
+      
     </div>
   )
 }

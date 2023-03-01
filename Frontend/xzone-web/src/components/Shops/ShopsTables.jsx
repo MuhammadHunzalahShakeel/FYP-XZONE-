@@ -12,6 +12,12 @@ const ShopsTables = (props) => {
     const [data,setData]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
 
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+          navigate('/login')
+      }
+    }, [])
     const getCountries = async ()=>{
       try{
           let axiosConfig = {
@@ -79,12 +85,34 @@ const ShopsTables = (props) => {
       }
     ]
     const navigate = useNavigate();
+    const handleChange = (e) => { 
+      console.log(e.target.name,e.target.value)
+      if ( e.target.name === 'shopName'){
+        setedit({ ...edit, shopName: e.target.value }) ;
+      }
+      else if ( e.target.name === 'ownerName'){
+        setedit({ ...edit, owner: e.target.value }) ;
+      }
+      else if ( e.target.name === 'purpose'){
+        setedit({ ...edit, purpose: e.target.value }) ;
+      }
+      else if ( e.target.name === 'demand'){
+        setedit({ ...edit, demand: e.target.value }) ;
+      }
+      else if ( e.target.name === 'floor'){
+        setedit({ ...edit, floor: e.target.value }) ;
+      }
+      else if ( e.target.name === 'area'){
+        setedit({ ...edit, Area: e.target.value }) ;
+      }
+      else if ( e.target.name === 'status'){
+        setedit({ ...edit, status: e.target.value }) ;
+      }
+      console.log(edit)
+    }
     const handleEdit = (row) =>{
       setedit(row);
       console.log(row)
-      // return(<editAdvertisment row></editAdvertisment>)
-      
-      // console.log(edit);
       setmodal(true);
     }
     const handleDelete = (_id) => {
@@ -115,10 +143,44 @@ const ShopsTables = (props) => {
     },{});
     useEffect(()=>{
         const result = countries.filter(country=>{
-            return country.name.toLowerCase().match(search.toLowerCase());
+            return country.shopName.toLowerCase().match(search.toLowerCase());
         })
         setFilteredCountries(result);
     },[search]);
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        // await login({ variables: { email: loginData.email, password: loginData.password } });
+        console.log(edit)
+        
+        // console.log(error, '123123')
+        // console.log(loading)
+        let axiosConfig = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              "Access-Control-Allow-Origin": "*",
+              "token":localStorage.getItem("token")
+          }
+        };
+        axios
+        .post("http://localhost:5000/api/shops/edit", edit,axiosConfig)
+        .then((response) => {if(response.status===200){
+          console.log(response.data)
+          navigate("/shops");
+            window.location.reload();
+        }
+        else{
+          console.log(response)
+        }
+    });
+    }
+        
+      catch (error) {
+        console.log(error.message)
+    }
+    
+    }
   return (
     <div>
    <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
@@ -126,7 +188,7 @@ const ShopsTables = (props) => {
               Add Shop
             </ModalHeader>
             <ModalBody> 
-                <form >
+                <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                       <div>
@@ -135,10 +197,9 @@ const ShopsTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Shop Name'
-                        value={edit.shopName}
+                        placeholder={edit.shopName}
                         name='shopName'>
                         </input>
                       </div>
@@ -148,10 +209,9 @@ const ShopsTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Owner Name'
-                        value={edit.owner}
+                        placeholder={edit.owner}
                         name='ownerName'>
                         </input>
                       </div>
@@ -161,10 +221,9 @@ const ShopsTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Purpose'
-                        value={edit.purpose}
+                        placeholder={edit.purpose}
                         name='purpose'>
                         </input>
                       </div>
@@ -174,10 +233,9 @@ const ShopsTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Demand'
-                        value={edit.demand}
+                        placeholder={edit.demand}
                         name='demand'>
                         </input>
                       </div>
@@ -187,10 +245,9 @@ const ShopsTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Floor'
-                        value={edit.floor}
+                        placeholder={edit.floor}
                         name='floor'>
                         </input>
                       </div>
@@ -200,10 +257,9 @@ const ShopsTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Area'
-                        value={edit.Area}
+                        placeholder={edit.Area}
                         name='area'>
                         </input>
                       </div>
@@ -213,17 +269,16 @@ const ShopsTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Status'
-                        value={edit.status}
+                        placeholder={edit.status}
                         name='status'>
                         </input>
                       </div>
                     </Col>
                   </Row>
                 <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
-                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}} onClick={()=>setmodal(false)}>Cancel</button>
                 </form> 
             </ModalBody>
           </Modal>

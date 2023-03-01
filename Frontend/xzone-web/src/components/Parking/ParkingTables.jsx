@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
+
 const ParkingTables = (props) => {
     const[modal,setmodal]=useState(false);
     const[edit,setedit]=useState({carNumber: '',fees:'',status:''});
@@ -10,6 +11,12 @@ const ParkingTables = (props) => {
     const [countries,setCountries]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
 
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+          navigate('/login')
+      }
+    }, [])
     const getCountries = async ()=>{
       try{
         let axiosConfig = {
@@ -130,12 +137,22 @@ const ParkingTables = (props) => {
       }
     ]
     const navigate = useNavigate();
+    const handleChange = (e) => {
+      if ( e.target.name === 'carNumber'){
+        setedit({ ...edit, carNumber: e.target.value }) ;
+      }
+  
+      else if ( e.target.name === 'parkingfee'){
+        setedit({ ...edit, fees: e.target.value }) ;
+      }
+      else if ( e.target.name === 'status'){
+        setedit({ ...edit, status: e.target.value }) ;
+      }
+      console.log(edit)
+  }
     const handleEdit = (row) =>{
       setedit(row);
       console.log(row)
-      // return(<editAdvertisment row></editAdvertisment>)
-      
-      // console.log(edit);
       setmodal(true);
     }
     const handleDelete = (_id) => {
@@ -167,12 +184,44 @@ const ParkingTables = (props) => {
     
     useEffect(()=>{
         const result = countries.filter(country=>{
-            return country.name.toLowerCase().match(search.toLowerCase());
+            return country.carNumber.toLowerCase().match(search.toLowerCase());
         })
         setFilteredCountries(result);
     },[search]);
 
-
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        // await login({ variables: { email: loginData.email, password: loginData.password } });
+        console.log(edit)
+        
+        // console.log(error, '123123')
+        // console.log(loading)
+        let axiosConfig = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              "Access-Control-Allow-Origin": "*",
+              "token":localStorage.getItem("token")
+          }
+        };
+        axios
+        .post("http://localhost:5000/api/parking/edit", edit,axiosConfig)
+        .then((response) => {if(response.status===200){
+          console.log(response.data)
+          navigate("/parking");
+            window.location.reload();
+        }
+        else{
+          console.log(response)
+        }
+    });
+    }
+        
+      catch (error) {
+        console.log(error.message)
+    }
+    
+    }
   return (
     <div>
        <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
@@ -180,7 +229,7 @@ const ParkingTables = (props) => {
               Add Parking
             </ModalHeader>
             <ModalBody> 
-                <form>
+                <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                       <div>
@@ -189,10 +238,9 @@ const ParkingTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Car Number'
-                        value={edit.carNumber}
+                        placeholder={edit.carNumber}
                         name='carNumber'>
                       </input>
                       </div>
@@ -202,10 +250,9 @@ const ParkingTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Parking Fee'
-                        value={edit.fees}
+                        placeholder={edit.fees}
                         name='parkingfee'>
                         </input>
                       </div>
@@ -215,17 +262,16 @@ const ParkingTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange} 
+                        onChange={handleChange} 
                         className='form-control'
-                        placeholder='Enter Status'
-                        value={edit.status}
+                        placeholder={edit.status}
                         name='status'>
                         </input>
                       </div>
                     </Col>
                   </Row>
                 <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
-                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}} onClick={()=>setmodal(false)}>Cancel</button>
                 </form> 
             </ModalBody>
           </Modal>

@@ -10,6 +10,12 @@ const EntertainmentTables = (props) => {
     const [countries,setCountries]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
 
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+          navigate('/login')
+      }
+    }, [])
     const getCountries = async ()=>{
       try{
         let axiosConfig = {
@@ -69,12 +75,28 @@ const EntertainmentTables = (props) => {
       }
     ]
     const navigate = useNavigate();
+    const handleChange = (e) => {
+      if ( e.target.name === 'brandName'){
+        setedit({ ...edit, Name: e.target.value }) ;
+      }
+      else if ( e.target.name === 'brandEmail'){
+        setedit({ ...edit,Email: e.target.value }) ;
+      }
+      else if ( e.target.name === 'category'){
+        setedit({ ...edit, Category: e.target.value }) ;
+      }
+      else if ( e.target.name === 'description'){
+        setedit({ ...edit, Description: e.target.value }) ;
+      }
+      else if ( e.target.name === 'website'){
+        setedit({ ...edit, Website: e.target.value }) ;
+      }
+      console.log(edit)
+  
+  }
     const handleEdit = (row) =>{
       setedit(row);
       console.log(row)
-      // return(<editAdvertisment row></editAdvertisment>)
-      
-      // console.log(edit);
       setmodal(true);
     }
     const handleDelete = (_id) => {
@@ -106,12 +128,44 @@ const EntertainmentTables = (props) => {
     
     useEffect(()=>{
         const result = countries.filter(country=>{
-            return country.name.toLowerCase().match(search.toLowerCase());
+            return country.Name.toLowerCase().match(search.toLowerCase());
         })
         setFilteredCountries(result);
     },[search]);
 
-
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        // await login({ variables: { email: loginData.email, password: loginData.password } });
+        console.log(edit)
+        
+        // console.log(error, '123123')
+        // console.log(loading)
+        let axiosConfig = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              "Access-Control-Allow-Origin": "*",
+              "token":localStorage.getItem("token")
+          }
+        };
+        axios
+        .post("http://localhost:5000/api/FoodCourt/edit", edit,axiosConfig)
+        .then((response) => {if(response.status===200){
+          console.log(response.data)
+          navigate("/entertainment");
+            window.location.reload();
+        }
+        else{
+          console.log(response)
+        }
+    });
+    }
+        
+      catch (error) {
+        console.log(error.message)
+    }
+    
+    }
   return (
     <div>
      <Modal size='lg' isOpen={modal} toggle={()=>setmodal(!modal)}>
@@ -119,7 +173,7 @@ const EntertainmentTables = (props) => {
               Edit Brand
             </ModalHeader>
             <ModalBody> 
-                <form >
+                <form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={12}>
                      
@@ -129,10 +183,9 @@ const EntertainmentTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Name'
-                        value={edit.Name}
+                        placeholder={edit.Name}
                         name='brandName'>
                         </input>
                       </div>
@@ -142,10 +195,9 @@ const EntertainmentTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Email'
-                        value={edit.Email}
+                        placeholder={edit.Email}
                         name='brandEmail'>
                         </input>
                       </div>
@@ -155,10 +207,9 @@ const EntertainmentTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Category'
-                        value={edit.Category}
+                        placeholder={edit.Category}
                         name='category'>
                         </input>
                       </div>
@@ -168,10 +219,9 @@ const EntertainmentTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Description'
-                        value={edit.Description}
+                        placeholder={edit.Description}
                         name='description'>
                         </input>
                       </div>
@@ -181,17 +231,16 @@ const EntertainmentTables = (props) => {
                         </label>
                         <input
                         type='text'
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         className='form-control'
-                        placeholder='Enter Website'
-                        value={edit.Website}
+                        placeholder={edit.Website}
                         name='website'>
                         </input>
                       </div>
                     </Col>
                   </Row>
                 <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}}  type="submit">Save</button>
-                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}} onClick={()=>setmodal(false)}>Cancel</button>
                 </form> 
                 
             </ModalBody>

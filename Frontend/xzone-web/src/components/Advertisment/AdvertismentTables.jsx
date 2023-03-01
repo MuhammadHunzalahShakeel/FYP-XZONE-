@@ -5,11 +5,20 @@ import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import DataTable from 'react-data-table-component';
 
 const AdvertismentTables = (props) => {
+    const postURL = "http://localhost:5000/api/advertisements/edit";
     const[modal,setmodal]=useState(false);
-    const[edit,setedit]=useState({shopname: '',cattegory: '', instructions: '' ,link:''});
+    const[edit,setedit]=useState({advertisedBy: '',cattegory: '', instructions:'',link:''});
     const [search,setSearch]= useState([]);
+    const [apidata,setapidata]=useState([]);
     const [countries,setCountries]= useState([]);
     const [filteredCountries,setFilteredCountries]= useState([]);
+    
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            navigate('/login')
+        }
+    }, [])
     
     const _delete=(id)=>{
       console.log(id)
@@ -75,13 +84,49 @@ const AdvertismentTables = (props) => {
     ]
 
     const navigate = useNavigate();
+    const handleChange = (e) => { 
+      console.log(e.target.name,e.target.value)
+      if ( e.target.name === 'Ads_shop'){
+        setedit({ ...edit, advertisedBy: e.target.value }) ;
+      }
+      else if ( e.target.name === 'Ads_cat'){
+        setedit({ ...edit, cattegory: e.target.value }) ;
+      }
+      else if ( e.target.name === 'Instructions_shop'){
+        setedit({ ...edit, instructions: e.target.value }) ;
+      }
+      else if ( e.target.name === 'link'){
+        setedit({ ...edit, link: e.target.value }) ;
+      }
+      console.log(edit)
+    }
     const handleEdit = (row) =>{
       setedit(row);
       console.log(row)
-      // return(<editAdvertisment row></editAdvertisment>)
-      
-      // console.log(edit);
       setmodal(true);
+      
+        // setData(data.filter((row) => row.id !== id));
+  //       console.log(row);
+  //       try{
+  //         let axiosConfig = {
+  //           headers: {
+  //               'Content-Type': 'application/json;charset=UTF-8',
+  //               "Access-Control-Allow-Origin": "*",
+  //               "token":localStorage.getItem("token")
+  //           }
+  //         };
+  //       const response = axios.post("http://localhost:5000/api/advertisements/edit",{row:row},axiosConfig).then((response)=> {if(response.status===200){
+          
+  //         navigate("/advertisement");
+  //         window.location.reload();
+  //       }
+  //       else{
+  //         console.log(response)
+  //       }
+  //   });
+  // }catch(error){
+  //   console.log(error)
+  // }
     }
     const handleDelete = (_id) => {
       // setData(data.filter((row) => row.id !== id));
@@ -96,7 +141,7 @@ const AdvertismentTables = (props) => {
         };
       const response = axios.post("http://localhost:5000/api/advertisements/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
         
-        navigate("/advertisement");
+        navigate("/advertisment");
         window.location.reload();
       }
       else{
@@ -112,11 +157,44 @@ const AdvertismentTables = (props) => {
     
     useEffect(()=>{
         const result = countries.filter(country=>{
-            return country.Ads_shop.toLowerCase().match(search.toLowerCase());
+            return country.advertisedBy.toLowerCase().match(search.toLowerCase());
         })
         setFilteredCountries(result);
     },[search]);
 
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        // await login({ variables: { email: loginData.email, password: loginData.password } });
+        console.log(edit)
+        
+        // console.log(error, '123123')
+        // console.log(loading)
+        let axiosConfig = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              "Access-Control-Allow-Origin": "*",
+              "token":localStorage.getItem("token")
+          }
+        };
+        axios
+        .post("http://localhost:5000/api/advertisements/edit", edit,axiosConfig)
+        .then((response) => {if(response.status===200){
+          console.log(response.data)
+          navigate("/advertisment");
+            window.location.reload();
+        }
+        else{
+          console.log(response)
+        }
+    });
+    }
+        
+      catch (error) {
+        console.log(error.message)
+    }
+    
+    }
 
   return (
   <div>
@@ -126,7 +204,7 @@ const AdvertismentTables = (props) => {
       Edit Ads
     </ModalHeader>
     <ModalBody> 
-        <form  >
+        <form  onSubmit={handleSubmit}>
           <Row>
             <Col lg={12}>
               <div>
@@ -136,8 +214,9 @@ const AdvertismentTables = (props) => {
                 <input
                 type='text'
                 className='form-control'
-                placeholder='hello'
-                value={edit.advertisedBy}
+                placeholder={edit.advertisedBy}
+                onChange={handleChange} 
+              
                 name='Ads_shop'>
               </input>
               </div>
@@ -148,8 +227,8 @@ const AdvertismentTables = (props) => {
                 <input
                 type='text'
                 className='form-control'
-                placeholder='Enter Ads Category'
-                value={edit.cattegory}
+                placeholder={edit.cattegory}
+                onChange={handleChange}
                 name='Ads_cat'>
                 </input>
               </div>
@@ -160,8 +239,8 @@ const AdvertismentTables = (props) => {
                 <input
                 type='text'
                 className='form-control'
-                value={edit.instructions}
-                placeholder='Enter Instruction'
+                placeholder={edit.instructions}
+                onChange={handleChange}
                 name='Instructions_shop'>
                 </input>
               </div>
@@ -172,15 +251,15 @@ const AdvertismentTables = (props) => {
                 <input
                 type='text'
                 className='form-control'
-                value={edit.link}
-                placeholder='Enter Ads Link'
+                placeholder={edit.link}
+                onChange={handleChange}
                 name='link'>
                 </input>
               </div>
             </Col>
           </Row>
-          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} >Save</button>
-        <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+          <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
+        <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}} onClick={()=>setmodal(false)}>Cancel</button>
         </form> 
   
         
