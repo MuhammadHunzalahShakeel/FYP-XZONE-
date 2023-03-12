@@ -172,7 +172,7 @@ const handleChange = (e) => {
                     </div>
                     <div className="inline" >
                         <span className='Label'>Name:</span>
-                        <span>{profiledata.name}</span>
+                        <span>{profiledata.Name}</span>
                     </div>
                     <div className="inline">
                         <span className='Label'>Email Address:</span>
