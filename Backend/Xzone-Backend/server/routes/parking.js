@@ -32,6 +32,7 @@ router.get("/:id", async (req, res) => {
   });
 
 
+
   //GET all
   router.get("/", async (req, res) => {
     try {
@@ -39,6 +40,37 @@ router.get("/:id", async (req, res) => {
       let {handle}=verifyAccessToken(req.headers['token']);
       console.log(handle)
       let query=`Select * from xzone.parking where mall_id=(select id from xzone.shoppingmall where owner=${handle})`;
+      let [result]=await MYSQL_CONNECTOR.connection.query(query);
+      
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+
+  //GET count of all FOR APP
+  router.get("/", async (req, res) => {
+    try {
+      console.log(req.headers['token'])
+      let {handle}=verifyAccessToken(req.headers['token']);
+      console.log(handle)
+      let query=`Select count(*) from xzone.parking where mall_id=(select id from xzone.shoppingmall where owner=${handle})`;
+      let [result]=await MYSQL_CONNECTOR.connection.query(query);
+      
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  //GET count of all FOR APP
+  router.get("/owner/mobile", async (req, res) => {
+    try {
+      console.log(req.headers['token'])
+      let {handle}=verifyAccessToken(req.headers['token']);
+      console.log(handle)
+      let query=`Select count(*) as count from xzone.parking where mall_id=1`;
       let [result]=await MYSQL_CONNECTOR.connection.query(query);
       
       res.status(200).json(result);

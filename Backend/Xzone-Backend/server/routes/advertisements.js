@@ -66,7 +66,7 @@ router.get("/byid/:id", async (req, res) => {
         console.log(req.headers['token'])
         let {handle}=verifyAccessToken(req.headers['token']);
         console.log(handle)
-        let query=`Select ad.id as id , sh.shopName as advertisedBy , ad.cattegory as cattegory, ad.instructions as instructions , ad.link as link from xzone.advertisements as ad , xzone.shops as sh where ad.advertisedBy = sh.id and sh.owner = ${handle}`;
+        let query=`Select ad.id as id , sh.shopName as advertisedBy , ad.category as cattegory, ad.instructions as instructions , ad.link as link from xzone.advertisements as ad , xzone.shops as sh where ad.advertisedBy = sh.id and sh.owner = ${handle}`;
         let [result]=await MYSQL_CONNECTOR.connection.query(query);
         
         res.status(200).json(result);

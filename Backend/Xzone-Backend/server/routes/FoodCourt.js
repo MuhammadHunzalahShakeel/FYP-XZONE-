@@ -47,6 +47,21 @@ router.get("/:id", async (req, res) => {
     }
   });
 
+  //GET all
+  router.get("/owner/mobile", async (req, res) => {
+    try {
+      console.log(req.headers['token'])
+      let {handle}=verifyAccessToken(req.headers['token']);
+      console.log(handle)
+      let query=`Select * from xzone.FoodCourt where mall_id=1`;
+      let [result]=await MYSQL_CONNECTOR.connection.query(query);
+      
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 
 //delete row from foodcourt admin
 router.post("/delete", async (req, res) => {

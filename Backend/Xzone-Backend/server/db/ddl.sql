@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `shoppingmall` (
   `UpdatedAt` datetime DEFAULT (now())
 );
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `Users` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `Name` text,
   `Email` varchar(255) UNIQUE,
