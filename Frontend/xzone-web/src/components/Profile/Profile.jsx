@@ -12,7 +12,7 @@ import axios from "axios";
 export default function Profile(props) {
   const[modal,setmodal]=useState(false);
   const [profiledata,setprofiledata]=useState({id:'',Name:'',Email:''});
-  const getURL = "http://localhost:5000/api/profile";
+  const getURL = "http://18.222.182.9:5000/api/profile";
   const[edit,setedit]=useState({Name: '',Email: '', Password:''});
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const temp = JSON.parse(localStorage.getItem('admin'))
 // setprofiledata({...profiledata,Email:temp.Email})
 // setprofiledata({...profiledata,Password:temp.Password})
 setprofiledata(temp)
+setedit(temp)
 console.log(profiledata)
 },[])
 const navigate = useNavigate();
@@ -57,7 +58,7 @@ const handleChange = (e) => {
         }
       };
       axios
-      .post("http://localhost:5000/api/profile/edit", edit,axiosConfig)
+      .post("http://18.222.182.9:5000/api/profile/edit", edit,axiosConfig)
       .then((response) => {if(response.status===200){
         console.log(response.data)
         navigate("/advertisment");
@@ -110,7 +111,7 @@ const handleChange = (e) => {
                         <input
                         type='email'
                         className='form-control'
-                        placeholder={edit.email}
+                        placeholder={edit.Email}
                         onChange={handleChange} 
                         name='Email'>
                         </input>
@@ -151,9 +152,9 @@ const handleChange = (e) => {
                      
                     </Col>
                   </Row>
-                </form> 
                 <button className='btn mt-3' style={{backgroundColor:"#0F6AAB",color:"white"}} type="submit">Save</button>
                 <button className='btn mt-3' style={{backgroundColor:"#FFFFFF",color:"#0F6AAB"}}>Cancel</button>
+                </form> 
                 
             </ModalBody>
             

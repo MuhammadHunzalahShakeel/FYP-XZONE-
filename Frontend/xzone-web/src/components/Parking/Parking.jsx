@@ -12,8 +12,8 @@ import axios from "axios";
 
 
 export default function Parking(props) {
-  const postURL = "http://localhost:5000/api/parking";
-  const getURL = "http://localhost:5000/api/parking";
+  const postURL = "http://18.222.182.9:5000/api/parking";
+  const getURL = "http://18.222.182.9:5000/api/parking";
   const [apidata,setapidata]=useState([]);
   const [storedata, storeapidata] = useState({carNumber: '',fees:'',status:''})
   const[modal,setmodal]=useState(false);

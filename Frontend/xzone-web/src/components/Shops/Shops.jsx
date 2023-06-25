@@ -11,8 +11,8 @@ import axios from "axios";
 
 
 export default function Shops(props) {
-  const postURL = "http://localhost:5000/api/shops";
-  const getURL = "http://localhost:5000/api/shops";
+  const postURL = "http://18.222.182.9:5000/api/shops";
+  const getURL = "http://18.222.182.9:5000/api/shops/owner/web";
   const [apidata,setapidata]=useState([]);
   const [storedata, storeapidata] = useState({shopName: '', owner:'',purpose:'',demand:'',floor:'',Area:'',status:''})
     const[modal,setmodal]=useState(false)
@@ -61,8 +61,7 @@ const navigate = useNavigate();
       storeapidata({ ...storedata, status: e.target.value }) ;
     }
 
-  }
-
+}
 
 const handleSubmit = async (e) => {
   e.preventDefault();

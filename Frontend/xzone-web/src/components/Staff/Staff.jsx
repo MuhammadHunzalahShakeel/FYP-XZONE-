@@ -10,8 +10,8 @@ import { useEffect } from 'react';
 import axios from "axios";
 
 export default function Staff(props) {
-  const postURL = "http://localhost:5000/api/staff";
-  const getURL = "http://localhost:5000/api/staff";
+  const postURL = "http://18.222.182.9:5000/api/staff";
+  const getURL = "http://18.222.182.9:5000/api/staff";
   const [apidata,setapidata]=useState([]);
   const [storedata, storeapidata] = useState({fullName: '',Email:'',gender:'',age:'',salary:'',designation:''})
   const[modal,setmodal]=useState(false)

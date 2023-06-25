@@ -10,8 +10,8 @@ import { useEffect } from 'react';
 import axios from "axios";
 
 export default function  Entertainment(props) {
-  const postURL = "http://localhost:5000/api/FoodCourt";
-  const getURL = "http://localhost:5000/api/FoodCourt";
+  const postURL = "http://18.222.182.9:5000/api/FoodCourt";
+  const getURL = "http://18.222.182.9:5000/api/FoodCourt";
   const [apidata,setapidata]=useState([]);
   const [storedata, storeapidata] = useState({Name: '',Email:'',Category:'',Description:'',Website:''})
     const[modal,setmodal]=useState(false)

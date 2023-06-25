@@ -26,7 +26,7 @@ const ParkingTables = (props) => {
               "token":localStorage.getItem("token")
           }
         };
-        const response = await axios.get("http://localhost:5000/api/parking",axiosConfig).then((response)=>{
+        const response = await axios.get("http://18.222.182.9:5000/api/parking",axiosConfig).then((response)=>{
           console.log(response.data);
           // setapidata(response.data)};
           setCountries(response.data);
@@ -166,7 +166,7 @@ const ParkingTables = (props) => {
               "token":localStorage.getItem("token")
           }
         };
-      const response = axios.post("http://localhost:5000/api/parking/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
+      const response = axios.post("http://18.222.182.9:5000/api/parking/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
         
         navigate("/parking");
         window.location.reload();
@@ -205,7 +205,7 @@ const ParkingTables = (props) => {
           }
         };
         axios
-        .post("http://localhost:5000/api/parking/edit", edit,axiosConfig)
+        .post("http://18.222.182.9:5000/api/parking/edit", edit,axiosConfig)
         .then((response) => {if(response.status===200){
           console.log(response.data)
           navigate("/parking");

@@ -5,7 +5,7 @@ import {Modal,ModalHeader,ModalBody,Row,Col} from 'reactstrap'
 import DataTable from 'react-data-table-component';
 
 const AdvertismentTables = (props) => {
-    const postURL = "http://localhost:5000/api/advertisements/edit";
+    const postURL = "http://18.222.182.9:5000/api/advertisements/edit";
     const[modal,setmodal]=useState(false);
     const[edit,setedit]=useState({advertisedBy: '',cattegory: '', instructions:'',link:''});
     const [search,setSearch]= useState([]);
@@ -32,7 +32,7 @@ const AdvertismentTables = (props) => {
               "token":localStorage.getItem("token")
           }
         };
-        const response = await axios.get("http://localhost:5000/api/advertisements/admin",axiosConfig).then((response)=>{
+        const response = await axios.get("http://18.222.182.9:5000/api/advertisements/admin",axiosConfig).then((response)=>{
           console.log(response.data);
           // setapidata(response.data)};
           setCountries(response.data);
@@ -115,7 +115,7 @@ const AdvertismentTables = (props) => {
   //               "token":localStorage.getItem("token")
   //           }
   //         };
-  //       const response = axios.post("http://localhost:5000/api/advertisements/edit",{row:row},axiosConfig).then((response)=> {if(response.status===200){
+  //       const response = axios.post("http://18.222.182.9:5000/api/advertisements/edit",{row:row},axiosConfig).then((response)=> {if(response.status===200){
           
   //         navigate("/advertisement");
   //         window.location.reload();
@@ -139,7 +139,7 @@ const AdvertismentTables = (props) => {
               "token":localStorage.getItem("token")
           }
         };
-      const response = axios.post("http://localhost:5000/api/advertisements/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
+      const response = axios.post("http://18.222.182.9:5000/api/advertisements/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
         
         navigate("/advertisment");
         window.location.reload();
@@ -178,7 +178,7 @@ const AdvertismentTables = (props) => {
           }
         };
         axios
-        .post("http://localhost:5000/api/advertisements/edit", edit,axiosConfig)
+        .post("http://18.222.182.9:5000/api/advertisements/edit", edit,axiosConfig)
         .then((response) => {if(response.status===200){
           console.log(response.data)
           navigate("/advertisment");

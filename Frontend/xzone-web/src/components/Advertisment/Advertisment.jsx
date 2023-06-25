@@ -11,8 +11,8 @@ import axios from "axios";
 
 
 export default function Advertisment(props) {
-  const postURL = "http://localhost:5000/api/advertisements/admin";
-  const getURL = "http://localhost:5000/api/advertisements/admin";
+  const postURL = "http://18.222.182.9:5000/api/advertisements/admin";
+  const getURL = "http://18.222.182.9:5000/api/advertisements/admin";
   const [apidata,setapidata]=useState([]);
   const [storedata, storeapidata] = useState({shopname: '',cattegory: '', instructions: '' ,link:''})
   const[modal,setmodal]=useState(false)

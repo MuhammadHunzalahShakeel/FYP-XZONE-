@@ -25,7 +25,7 @@ router.post("/edit", async (req, res) => {
     console.log(req.headers['token'])
     let {handle}=verifyAccessToken(req.headers['token']);
     console.log(handle)
-    let query=`update xzone.user SET Name= ' ${req.body.Name}',Email= ' ${req.body.Email}',Password= ' ${req.body.Password}' where id = ${req.body.id}`;
+    let query=`update xzone.Users SET Name= '${req.body.Name}',Email= '${req.body.Email}',Password= '${req.body.Password}' where id = ${req.body.id}`;
     let [result]=await MYSQL_CONNECTOR.connection.query(query);
     
     res.status(200).json(result);

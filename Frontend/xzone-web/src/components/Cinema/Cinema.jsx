@@ -10,8 +10,8 @@ import { useEffect } from 'react';
 import axios from "axios";
 
 export default function  Cinema(props) {
-  const postURL = "http://localhost:5000/api/cinema";
-  const getURL = "http://localhost:5000/api/cinema";
+  const postURL = "http://18.222.182.9:5000/api/cinema";
+  const getURL = "http://18.222.182.9:5000/api/cinema";
   const [apidata,setapidata]=useState([]);
   const [storedata, storeapidata] = useState({Name: '',Email:'',Description:'',Website:''})
     const[modal,setmodal]=useState(false)

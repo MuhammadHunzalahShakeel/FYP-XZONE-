@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
 
 
   //GET all by owner
-  router.get("/owner", async (req, res) => {
+  router.get("/owner/web", async (req, res) => {
     try {
       console.log(req.headers['token'])
       let {handle}=verifyAccessToken(req.headers['token']);

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 
 export default function Signup() {
-  const baseURL = "http://localhost:5000/api/auth/register/admin";
+  const baseURL = "http://18.222.182.9:5000/api/auth/register/admin";
   const navigate = useNavigate();
   const [SignupData, setSignupData] = useState({ Name: '',email: '', password: '' ,username:'',mallname:'',confirm:''})
   const handleChange = (e) => {

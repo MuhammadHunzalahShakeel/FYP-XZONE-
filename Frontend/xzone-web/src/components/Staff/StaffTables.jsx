@@ -25,7 +25,7 @@ const StaffTables = (props) => {
               "token":localStorage.getItem("token")
           }
         };
-        const response = await axios.get("http://localhost:5000/api/staff",axiosConfig).then((response)=>{
+        const response = await axios.get("http://18.222.182.9:5000/api/staff",axiosConfig).then((response)=>{
           console.log(response.data);
           // setapidata(response.data)};
           setCountries(response.data);
@@ -183,7 +183,7 @@ const StaffTables = (props) => {
               "token":localStorage.getItem("token")
           }
         };
-      const response = axios.post("http://localhost:5000/api/staff/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
+      const response = axios.post("http://18.222.182.9:5000/api/staff/delete",{id:_id},axiosConfig).then((response)=> {if(response.status===200){
         
         navigate("/staff");
         window.location.reload();
@@ -222,7 +222,7 @@ const StaffTables = (props) => {
           }
         };
         axios
-        .post("http://localhost:5000/api/staff/edit", edit,axiosConfig)
+        .post("http://18.222.182.9:5000/api/staff/edit", edit,axiosConfig)
         .then((response) => {if(response.status===200){
           console.log(response.data)
           navigate("/staff");

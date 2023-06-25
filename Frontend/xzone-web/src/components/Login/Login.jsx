@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 
 export default function Login() {
-  const baseURL = "http://localhost:5000/api/auth/login/admin";
+  const baseURL = "http://18.222.182.9:5000/api/auth/login/admin";
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ email: '', password: '' })
   const handleChange = (e) => {
